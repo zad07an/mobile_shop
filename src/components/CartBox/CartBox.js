@@ -5,16 +5,18 @@ import './CartBox.css'
 
 export default function CartBox({product}) {
 
-  const {cartProducts, addToCart, removeFromCart} = useContext(ShopContext);
-  const productArr = []
-  productArr.push(product)
-  const totalPrice = productArr.reduce((price, item) => price + item.quantity * item.price, 0)
+  const {cartProducts, addToCart, removeFromCart, removeProductFromCart, getProductSubtotal} = useContext(ShopContext);
+
+  const totalPrice = getProductSubtotal(product.id);
+  const productArr = [];
+  productArr.push(product);
+  // const totalPrice = productArr.reduce((price, item) => price + item.quantity * item.price, 0)
   const buyButtonStyle = product.stock === 0 ? { background: 'gray', cursor: 'auto'} : null;
 
   return (
     <tr key={product.id} className='basket_product_box'>
       <td className='remove_table_cell'>
-          <button>
+          <button onClick={() => removeProductFromCart(product.id)}>
             <RiCloseFill />
           </button>
       </td>
