@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
 import { FaRegHeart } from 'react-icons/fa'
@@ -7,8 +7,13 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
 import { MdCompareArrows } from 'react-icons/md'
 import './Header.css'
+import { ShopContext } from '../../Context/ShopContext'
 
-export default function Header({ onShowMenu, onCloseMenu, menu, menuRef, cartProducts }) {
+export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
+
+  // const {} = useContext(ShopContext);
+
+  // const cartLength = getCartLength()
 
   const navigate = useNavigate();
   const showMenu = menu ? 'show_menu' : '';
@@ -48,7 +53,7 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef, cartPro
               <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Իմ Ֆավորիտները - 0</NavLink>
             </li>
             <li className="nav_list nav_my_cart_list">
-              <NavLink to="/basket" className={isActiveLink} onClick={onCloseMenu}>Իմ Զամբյուղը - {cartProducts.length}</NavLink>
+              <NavLink to="/basket" className={isActiveLink} onClick={onCloseMenu}>Իմ Զամբյուղը - 0</NavLink>
             </li>
             <li className="nav_list nav_compare_list">
               <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Համեմատում - 0</NavLink>
@@ -77,9 +82,9 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef, cartPro
             <HiOutlineShoppingCart size={28} color='white'/>
             <div className='my_basket'>
               <p>Իմ Զամբյուղը</p>
-              <span>Ապրանք - {cartProducts.length}</span>
+              <span>Ապրանք - 0</span>
             </div>
-            <p className="cart_count">{cartProducts.length}</p>
+            <p className="cart_count">0</p>
           </div>
           <div className="compare_box">
             <MdCompareArrows size={28} color='white'/>

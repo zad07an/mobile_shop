@@ -5,46 +5,16 @@ import Layouts from './layouts/Layouts';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import './App.css';
+import { ShopContextProvider } from './Context/ShopContext';
 
 function App() {
 
   const [menu, setMenu] = useState(false);
   const menuRef = useRef();
   const [productsType, setProductsType] = useState([...productData]);
-  const [cartProducts, setCartProducts] = useState([]);
 
   const onShowMenu = () => setMenu(!menu);
   const onCloseMenu = () => setMenu(false);
-
-  const addToCart = (product) => {
-    const productExist = cartProducts.find((item) => item.id === product.id);
-    if (productExist) {
-      setCartProducts(cartProducts.map((item) => item.id === product.id ?
-        { ...productExist, stock: --productExist.stock, quantity: ++productExist.quantity } : item),
-      )
-      setProductsType(productsType.map((item) => item.id === product.id ?
-      { ...productExist, stock: --productExist.stock, quantity: ++productExist.quantity } : item))
-    } else {
-      setCartProducts([...cartProducts, { ...product, quantity: 1 }])
-    }
-  }
-
-  const removeFromCart = (product) => {
-    const productExist = cartProducts.find((item) => item.id === product.id);
-    if (productExist.quantity === 1) {
-      setCartProducts(cartProducts.filter((item) => item.id !== product.id));
-    } else {
-      setCartProducts(cartProducts.map((item) => item.id === product.id ? { ...productExist, stock: ++productExist.stock, quantity: --productExist.quantity } : item))
-      setProductsType(productsType.map((item) => item.id === product.id ?
-      { ...productExist, stock: ++productExist.stock, quantity: --productExist.quantity } : item))
-    }
-  }
-
-  const removeCartProduct = (product) => {
-    setCartProducts(cartProducts.filter((item) => item.id !== product.id))
-  }
-
-  const removeAllCartProducts = () => setCartProducts([])
 
   useEffect(() => {
     const menuHandler = (e) => {
@@ -59,12 +29,14 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route element={<Layouts onShowMenu={onShowMenu} onCloseMenu={onCloseMenu} menu={menu} menuRef={menuRef} cartProducts={cartProducts} />}>
-          <Route path='/' element={<Home productsType={productsType} addToCart={addToCart} />} />
-          <Route path='/basket' element={<Cart cartProducts={cartProducts} addToCart={addToCart} removeFromCart={removeFromCart} removeCartProduct={removeCartProduct} removeAllCartProducts={removeAllCartProducts} />} />
-        </Route>
-      </Routes>
+      <ShopContextProvider>
+        <Routes>
+          <Route element={<Layouts onShowMenu={onShowMenu} onCloseMenu={onCloseMenu} menu={menu} menuRef={menuRef} />}>
+            <Route path='/' element={<Home productsType={productsType}  />} />
+            <Route path='/basket' element={<Cart  />} />
+          </Route>
+        </Routes>
+      </ShopContextProvider>
     </div>
   );
 }

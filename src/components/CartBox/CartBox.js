@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {RiCloseFill} from 'react-icons/ri'
+import { ShopContext } from '../../Context/ShopContext'
 import './CartBox.css'
 
-export default function CartBox({product, addToCart, removeFromCart, removeCartProduct}) {
+export default function CartBox({product}) {
 
+  const {cartProducts, addToCart, removeFromCart} = useContext(ShopContext);
   const productArr = []
   productArr.push(product)
   const totalPrice = productArr.reduce((price, item) => price + item.quantity * item.price, 0)
@@ -12,7 +14,7 @@ export default function CartBox({product, addToCart, removeFromCart, removeCartP
   return (
     <tr key={product.id} className='basket_product_box'>
       <td className='remove_table_cell'>
-          <button onClick={() => removeCartProduct(product)}>
+          <button>
             <RiCloseFill />
           </button>
       </td>
@@ -24,11 +26,11 @@ export default function CartBox({product, addToCart, removeFromCart, removeCartP
       <td className='name_table_cell'>{product.title}</td>
       <td className='price_table_cell'>{product.price}դր․</td>
       <td className='count_table_cell'>
-        <button onClick={() => removeFromCart(product)}>-</button>
+        <button onClick={() => removeFromCart(product.id)}>-</button>
         <div className="basket_product_quantity">
-          <p>{product.quantity}</p>
+          <p>{cartProducts[product.id]}</p>
         </div>
-        <button onClick={() => addToCart(product)} style={buyButtonStyle} disabled={product.stock === 0}>+</button>
+        <button onClick={() => addToCart(product.id)} style={buyButtonStyle} disabled={product.stock === 0}>+</button>
       </td>
       <td className='total_price_table_cell'>{totalPrice}դր․</td>
     </tr>

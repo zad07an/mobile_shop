@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRegHeart } from 'react-icons/fa'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { MdCompareArrows } from 'react-icons/md'
 import Rating from '../../components/Ratings/Rating'
+import { ShopContext } from '../../Context/ShopContext'
 import './ProductBox.css'
 
-export default function ProductBox({ product, addToCart }) {
+export default function ProductBox({ product }) {
+
+  const {cartProducts, addToCart } = useContext(ShopContext);
+
+  const productCount = cartProducts[product.id]
 
   const availablityStyle = product.stock === 0 ? 'product_not_available' : product.stock <= 25 ? 'product_limited' : 'product_available'
 
@@ -36,7 +41,9 @@ export default function ProductBox({ product, addToCart }) {
       <div className="product_button">
         <button className="product_fav" title='Ավելացնել ընտրանում'><FaRegHeart className='fav_icon'/></button>
         <button className="product_compare" title='Համեմատել'><MdCompareArrows className='compare_icon'/></button>
-        <button onClick={() => addToCart(product)} style={buyButtonStyle} disabled={product.stock === 0}><HiOutlineShoppingCart className='basket_icon' />Գնել</button>
+        <button onClick={() => addToCart(product.id)} style={buyButtonStyle} disabled={product.stock === 0}>
+          <HiOutlineShoppingCart className='basket_icon' />{productCount > 0 ? <>{productCount}</> : <>Գնել</>}
+        </button>
       </div>
     </div>
   )
