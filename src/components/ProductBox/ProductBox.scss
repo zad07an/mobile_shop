@@ -1,0 +1,160 @@
+@import '../../breakpoints';
+
+.product_box {
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s linear;
+
+  &:hover {
+    box-shadow: 0 0 10px rgb(167, 140, 140);
+    z-index: 10;
+  }
+
+  .product_availablity {
+    padding: 2px 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    p {
+      font-size: 14px;
+      color: white;
+    }
+  }
+
+  .product_image {
+    width: 100%;
+    min-height: 220px;
+    max-height: 220px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .product_name {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .product_per_month {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+    @include tablet_xs {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    span {
+      font-size: 14px;
+      color: #2196f3;
+    }
+
+    .product_rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+
+      .star_icon {
+        color: goldenrod;
+      }
+    }
+  }
+
+  .product_button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+
+    .product_fav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background: transparent;
+      border-top: 0.5px solid #ccc;
+
+      .fav_icon {
+        font-size: 22px;
+        color: #4C18AC;
+      }
+    }
+
+    .product_compare {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background: transparent;
+      border-top: 0.5px solid #ccc;
+      border-left: 0.5px solid #ccc;
+
+      .compare_icon {
+        font-size: 22px;
+        color: #4C18AC;
+      }
+    }
+
+    button {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      background: #4C18AC;
+      color: white;
+      cursor: pointer;
+
+      .basket_icon {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+.product_limited {
+  background: gold;
+}
+
+.product_not_available {
+  background: red;
+}
+
+.product_available {
+  background: #32CD32;
+}

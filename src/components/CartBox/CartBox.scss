@@ -1,0 +1,80 @@
+@import '../../breakpoints';
+
+.basket_product_box {
+  width: 100%;
+
+  .remove_table_cell {
+    max-width: 60px;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      color: red;
+      border: none;
+      cursor: pointer;
+      font-size: 26px;
+    }
+  }
+
+  .image_table_cell {
+    width: 100px;
+    padding: 5px 20px;
+
+    .basket_product_image {
+      width: 100px;
+      background: white;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .name_table_cell {
+    color: black;
+    font-size: 20px;
+  }
+
+  .price_table_cell {
+    font-size: 20px;
+  }
+
+  .count_table_cell {
+    button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      font-size: 22px;
+      background: #4C18AC;
+      color: white;
+      cursor: pointer;
+    }
+
+    .basket_product_quantity {
+      display: inline-block;
+      min-width: 40px;
+
+      p {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+
+  }
+
+  .total_price_table_cell {
+    font-size: 22px;
+  }
+
+  td {
+    height: 100px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+}

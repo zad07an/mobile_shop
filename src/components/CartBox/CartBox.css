@@ -1,0 +1,63 @@
+.basket_product_box {
+  width: 100%;
+}
+.basket_product_box .remove_table_cell {
+  max-width: 60px;
+}
+.basket_product_box .remove_table_cell button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  color: red;
+  border: none;
+  cursor: pointer;
+  font-size: 26px;
+}
+.basket_product_box .image_table_cell {
+  width: 100px;
+  padding: 5px 20px;
+}
+.basket_product_box .image_table_cell .basket_product_image {
+  width: 100px;
+  background: white;
+  margin: auto;
+}
+.basket_product_box .image_table_cell .basket_product_image img {
+  width: 100%;
+}
+.basket_product_box .name_table_cell {
+  color: black;
+  font-size: 20px;
+}
+.basket_product_box .price_table_cell {
+  font-size: 20px;
+}
+.basket_product_box .count_table_cell button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 22px;
+  background: #4C18AC;
+  color: white;
+  cursor: pointer;
+}
+.basket_product_box .count_table_cell .basket_product_quantity {
+  display: inline-block;
+  min-width: 40px;
+}
+.basket_product_box .count_table_cell .basket_product_quantity p {
+  font-size: 22px;
+  text-align: center;
+}
+.basket_product_box .total_price_table_cell {
+  font-size: 22px;
+}
+.basket_product_box td {
+  height: 100px;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}/*# sourceMappingURL=CartBox.css.map */
