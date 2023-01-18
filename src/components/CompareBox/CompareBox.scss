@@ -1,0 +1,64 @@
+.compare_product_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  border: 0.5px solid #ccc;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  position: relative;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    border: 1px solid rgb(79, 31, 168);
+  }
+
+  .compare_remove_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .compare_image_box {
+    width: 50%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .compare_brand_box {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .compare_title_box {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .compare_price_box {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      color: green;
+    }
+  }
+}

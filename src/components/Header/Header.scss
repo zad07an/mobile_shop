@@ -251,7 +251,7 @@
         }
       }
 
-      .fav_box {
+      .fav_box, .cart_box, .compare_box {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -262,7 +262,7 @@
           display: none;
         }
 
-        .my_fav {
+        .my_fav, .my_basket, .my_compare {
           display: flex;
           justify-content: center;
           align-items: flex-start;
@@ -278,12 +278,16 @@
           }
 
           span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
             font-size: 12px;
             color: white;
           }
         }
 
-        .fav_count {
+        .fav_count, .cart_count, .compare_count {
           min-width: 22px;
           min-height: 22px;
           display: none;
@@ -300,102 +304,14 @@
         }
       }
 
-      .cart_box {
+      .product_count_circle {
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
-        gap: 10px;
-
-        @include tablet_xs {
-          display: none;
-        }
-
-        .my_basket {
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          flex-direction: column;
-
-          @include tablet_lg {
-            display: none;
-          }
-
-          p {
-            font-size: 14px;
-            color: white;
-          }
-
-          span {
-            font-size: 12px;
-            color: white;
-          }
-        }
-
-        .cart_count {
-          min-width: 22px;
-          min-height: 22px;
-          display: none;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-          background: red;
-          color: white;
-          font-size: 14px;
-
-          @include tablet_lg {
-            display: flex;
-          }
-        }
-      }
-
-      .compare_box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        gap: 10px;
-
-        @include tablet_xs {
-          display: none;
-        }
-
-        .my_compare {
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          flex-direction: column;
-
-          @include tablet_lg {
-            display: none;
-          }
-
-          p {
-            font-size: 14px;
-            color: white;
-          }
-
-          span {
-            font-size: 12px;
-            color: white;
-          }
-        }
-
-        .compare_count {
-          min-width: 22px;
-          min-height: 22px;
-          display: none;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-          background: red;
-          color: white;
-          font-size: 14px;
-
-          @include tablet_lg {
-            display: flex;
-          }
-        }
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        background: rgb(231, 59, 59);
       }
 
       .login_box {

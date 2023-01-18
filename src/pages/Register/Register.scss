@@ -1,0 +1,140 @@
+.register_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(to left, rgb(123, 92, 215), #fafafafa);
+
+  .register_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+
+    a {
+      font-size: 45px;
+      font-weight: bold;
+      color: rgb(74, 40, 177);
+    }
+  }
+
+  .register_form {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    border-radius: 10px;
+    background: #fafafafa;
+    box-shadow: 0 2px 8px rgba(56, 56, 56, 0.694);
+
+    .register_form_title {
+      width: 90%;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h2 {
+        font-size: 36px;
+      }
+    }
+
+    .register_fname_lname, .register_email_age {
+      width: 90%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+
+      .fname_input, .lname_input, .email_input, .age_input {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    .password_input {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+
+      .password, .confirm_password {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    .checkbox_input {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        label {
+          cursor: pointer;
+        }
+
+        input {
+          width: 16px;
+          height: 16px;
+          accent-color: rgb(74, 40, 177);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .submit_input {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+
+      button {
+        width: 150px;
+        height: 45px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        background: #4A28B1;
+        color: white;
+        letter-spacing: 1px;
+        cursor: pointer;
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 45px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      outline: 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .error_message {
+      font-size: 12px;
+      color: #fc8181;
+    }
+  }
+}

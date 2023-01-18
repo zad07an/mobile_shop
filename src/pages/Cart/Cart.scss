@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 
     .basket_subtitle {
       width: 100%;
@@ -28,6 +28,35 @@
       h2 {
         font-size: 40px;
         font-weight: 500;
+      }
+    }
+
+    .cart_login_box {
+      width: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px 0;
+      border: 0.5px solid #ccc;
+      border-radius: 10px;
+
+      p {
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      button {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background: #4C18AC;
+        color: white;
+        cursor: pointer;
       }
     }
 
@@ -87,23 +116,22 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      gap: 10px;
-      padding-bottom: 40px;
 
       .basket_products {
         width: 100%;
+        height: 50px;
         border-collapse: collapse;
         border: none;
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 3fr 1fr 1fr;
+        align-items: center;
+        border-bottom: 0.5px solid #ccc;
 
-        thead {
-          tr {
-            td {
-              font-weight: 400;
-              padding: 10px 0;
-              border: none;
-              font-size: 18px;
-            }
-          }
+        div {
+          font-weight: 400;
+          padding: 10px 0;
+          border: none;
+          font-size: 20px;
         }
       }
 
@@ -111,28 +139,196 @@
         width: 100%;
         height: 60px;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10px;
+
+        .basket_total_price_clear {
+          width: 100%;
+          height: 60px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #6c34d5;
+          padding: 0 20px;
+
+          button {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #c40606;
+            color: #fff;
+            cursor: pointer;
+          }
+
+          p {
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .basket_form {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 40px;
+
+      .bsket_form_title {
+        width: 90%;
+        height: 60px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        h2 {
+          font-size: 26px;
+          font-weight: 500;
+        }
+      }
+
+      .basket_form_grid {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1rf;
+        grid-gap: 10px;
+
+        .basket_form_fname_lname {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10px;
+
+          .basket_form_fname,
+          .basket_form_lname {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 5px;
+
+            input {
+              width: 100%;
+              height: 45px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              outline: 0;
+              padding: 15px;
+              font-size: 16px;
+              transition: 0.1s ease-in-out;
+
+              &:focus {
+                border: 2px solid rgb(116, 48, 210);
+              }
+            }
+          }
+        }
+
+        .basket_form_tel_email {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10px;
+
+          .basket_form_tel,
+          .basket_form_email {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 5px;
+
+            input {
+              width: 100%;
+              height: 45px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              outline: 0;
+              padding: 15px;
+              font-size: 16px;
+              transition: 0.1s ease-in-out;
+
+              &:focus {
+                border: 2px solid rgb(116, 48, 210);
+              }
+            }
+          }
+        }
+      }
+
+      .basket_box_address {
+        width: 90%;
+
+        input {
+          width: 100%;
+          height: 45px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          outline: 0;
+          padding: 15px;
+          font-size: 16px;
+          transition: 0.1s ease-in-out;
+
+          &:focus {
+            border: 2px solid rgb(116, 48, 210);
+          }
+        }
+      }
+
+      .basket_form_message {
+        width: 90%;
+
+        textarea {
+          width: 100%;
+          height: 150px;
+          resize: none;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          outline: 0;
+          padding: 15px;
+          font-size: 16px;
+          transition: 0.1s ease-in-out;
+
+          &:focus {
+            border: 2px solid rgb(116, 48, 210);
+          }
+        }
+      }
+
+      .basket_return_shop_checkout {
+        width: 90%;
+        height: 60px;
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #6c34d5;
         padding: 0 20px;
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          font-size: 20px;
+          color: #000;
+        }
 
         button {
           width: 200px;
           height: 40px;
-          font-size: 16px;
+          font-size: 18px;
           border: none;
           border-radius: 5px;
-          background: #c40606;
+          background: #000;
           color: #fff;
           cursor: pointer;
         }
-
-        p {
-          font-size: 24px;
-          font-weight: 500;
-          color: white;
-        }
       }
     }
+
   }
 }

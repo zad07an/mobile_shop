@@ -1,19 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
-import { FaRegHeart } from 'react-icons/fa'
-import { HiMenuAlt3, HiOutlineShoppingCart } from 'react-icons/hi'
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
+import { HiMenuAlt3 } from 'react-icons/hi'
+import {RiShoppingCartLine, RiShoppingCartFill} from 'react-icons/ri'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BiUserCircle } from 'react-icons/bi'
 import { MdCompareArrows } from 'react-icons/md'
+import { useSelector } from 'react-redux'
 import './Header.css'
-import { ShopContext } from '../../Context/ShopContext'
 
 export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
 
-  // const {} = useContext(ShopContext);
-
-  // const cartLength = getCartLength()
+  const productQuantity = useSelector((state) => state.cart.cartProducts);
+  const favortieProductsQuantity = useSelector((state) => state.favorite.favoriteProducts);
+  const compareProductsQuantity = useSelector((state) => state.compare.compareProducts);
 
   const navigate = useNavigate();
   const showMenu = menu ? 'show_menu' : '';
@@ -29,19 +30,19 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
         <div ref={menuRef} className={`nav_items ${showMenu}`}>
           <ul className="nav_menu">
             <li className="nav_list">
-              <NavLink to="/" className={isActiveLink} onClick={onCloseMenu}>Տեսականի</NavLink>
+              <NavLink to="/shop/all" className={isActiveLink} onClick={onCloseMenu}>Տեսականի</NavLink>
             </li>
             <li className="nav_list">
               <NavLink to='/about' className={isActiveLink} onClick={onCloseMenu}>Զեղչված տեսականի</NavLink>
             </li>
             <li className="nav_list">
-              <NavLink to="/projects" className={isActiveLink} onClick={onCloseMenu}>Մեր մասին</NavLink>
+              <NavLink to="/about_us" className={isActiveLink} onClick={onCloseMenu}>Մեր մասին</NavLink>
             </li>
             <li className="nav_list">
               <NavLink to="/experience" className={isActiveLink} onClick={onCloseMenu}>Ապառիկ</NavLink>
             </li>
             <li className="nav_list">
-              <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Խանութներ</NavLink>
+              <NavLink to="/shop/all" className={isActiveLink} onClick={onCloseMenu}>Խանութներ</NavLink>
             </li>
             <li className="nav_list">
               <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Կապ</NavLink>
@@ -50,13 +51,13 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
               <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Աշխատատեղեր</NavLink>
             </li>
             <li className="nav_list nav_my_fav_list">
-              <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Իմ Ֆավորիտները - 0</NavLink>
+              <NavLink to="/favorites" className={isActiveLink} onClick={onCloseMenu}>Իմ Ֆավորիտները - {favortieProductsQuantity.length}</NavLink>
             </li>
             <li className="nav_list nav_my_cart_list">
-              <NavLink to="/basket" className={isActiveLink} onClick={onCloseMenu}>Իմ Զամբյուղը - 0</NavLink>
+              <NavLink to="/basket" className={isActiveLink} onClick={onCloseMenu}>Իմ Զամբյուղը - {productQuantity.length}</NavLink>
             </li>
             <li className="nav_list nav_compare_list">
-              <NavLink to="/contact" className={isActiveLink} onClick={onCloseMenu}>Համեմատում - 0</NavLink>
+              <NavLink to="/compare" className={isActiveLink} onClick={onCloseMenu}>Համեմատում - {compareProductsQuantity.length}</NavLink>
             </li>
           </ul>
           <div className='close_menu' onClick={onCloseMenu}>
@@ -70,29 +71,33 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
               <button><FiSearch/></button>
             </div>
           </form>
-          <div className="fav_box">
-            <FaRegHeart size={28} color='white' />
+          <div className="fav_box" onClick={() => navigate('/favorites')}>
+            {favortieProductsQuantity.length > 0 ?
+              <><FaHeart size={28} color='white' /></> :
+              <><FaRegHeart size={28} color='white' /></>}
             <div className='my_fav'>
               <p>Իմ Ֆավորիտները</p>
-              <span>Ապրանք - 0</span>
+              <span>Ապրանք - <div className='product_count_circle'>{favortieProductsQuantity.length}</div></span>
             </div>
-            <p className='fav_count'>0</p>
+            <p className='fav_count'>{favortieProductsQuantity.length}</p>
           </div>
           <div className="cart_box" onClick={() => navigate('/basket')}>
-            <HiOutlineShoppingCart size={28} color='white'/>
+            {productQuantity.length > 0 ?
+              <><RiShoppingCartFill size={28} color='white' /></> :
+              <><RiShoppingCartLine size={28} color='white' /></>}
             <div className='my_basket'>
               <p>Իմ Զամբյուղը</p>
-              <span>Ապրանք - 0</span>
+              <span>Ապրանք - <div className='product_count_circle'>{productQuantity.length}</div></span>
             </div>
-            <p className="cart_count">0</p>
+            <p className="cart_count">{productQuantity.length}</p>
           </div>
-          <div className="compare_box">
+          <div className="compare_box" onClick={() => navigate('/compare')}>
             <MdCompareArrows size={28} color='white'/>
             <div className='my_compare'>
               <p>Համեմատում</p>
-              <span>Ապրանք - 0</span>
+              <span>Ապրանք - <div className='product_count_circle'>{compareProductsQuantity.length}</div></span>
             </div>
-            <p className="compare_count">0</p>
+            <p className="compare_count">{compareProductsQuantity.length}</p>
           </div>
           <div className="login_box">
             <BiUserCircle size={28} color='white'/>

@@ -1,10 +1,15 @@
 .basket_product_box {
   width: 100%;
+  height: 120px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 3fr 1fr 1fr;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
 }
-.basket_product_box .remove_table_cell {
-  max-width: 60px;
-}
-.basket_product_box .remove_table_cell button {
+.basket_product_box .basket_remove_box button {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,26 +19,39 @@
   cursor: pointer;
   font-size: 26px;
 }
-.basket_product_box .image_table_cell {
-  width: 100px;
-  padding: 5px 20px;
+.basket_product_box .basket_image_box {
+  height: 100%;
+  padding: 10px 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.basket_product_box .image_table_cell .basket_product_image {
-  width: 100px;
+.basket_product_box .basket_image_box .basket_product_image {
+  width: 120px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: white;
   margin: auto;
+  overflow: hidden;
+  padding: 5px;
+  border: 0.5px solid #ccc;
 }
-.basket_product_box .image_table_cell .basket_product_image img {
+.basket_product_box .basket_image_box .basket_product_image img {
   width: 100%;
+  background-size: cover;
+  background-position: center;
 }
-.basket_product_box .name_table_cell {
+.basket_product_box .basket_name_box {
   color: black;
   font-size: 20px;
 }
-.basket_product_box .price_table_cell {
+.basket_product_box .basket_price_box {
   font-size: 20px;
 }
-.basket_product_box .count_table_cell button {
+.basket_product_box .basket_count_box button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -43,15 +61,15 @@
   color: white;
   cursor: pointer;
 }
-.basket_product_box .count_table_cell .basket_product_quantity {
+.basket_product_box .basket_count_box .basket_product_quantity {
   display: inline-block;
   min-width: 40px;
 }
-.basket_product_box .count_table_cell .basket_product_quantity p {
+.basket_product_box .basket_count_box .basket_product_quantity p {
   font-size: 22px;
   text-align: center;
 }
-.basket_product_box .total_price_table_cell {
+.basket_product_box .total_price_box {
   font-size: 22px;
 }
 .basket_product_box td {

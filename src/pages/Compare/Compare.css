@@ -1,0 +1,146 @@
+.compare_container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(250, 250, 250, 0.9803921569);
+  padding-top: 60px;
+}
+.compare_container .compare_box {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.compare_container .compare_box .compare_subtitle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+.compare_container .compare_box .compare_subtitle h2 {
+  font-size: 40px;
+  font-weight: 500;
+}
+.compare_container .compare_box .compare_empty_box {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.compare_container .compare_box .compare_empty_box .compare_empty {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #6c34d5;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.compare_container .compare_box .compare_empty_box .compare_empty .left_border {
+  width: 30px;
+  height: 100%;
+  background: #4C18AC;
+  position: absolute;
+  left: 0;
+}
+.compare_container .compare_box .compare_empty_box .compare_empty p {
+  font-size: 50px;
+  color: white;
+}
+.compare_container .compare_box .compare_empty_box button {
+  width: 240px;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  background: #2d2d2d;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+.compare_container .compare_box .compare_empty_box button:hover {
+  background: #414141;
+}
+.compare_container .compare_box .display_compare_products {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+.compare_container .compare_box .display_compare_products .display_compare {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop_clear {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #6c34d5;
+  padding: 0 20px;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop_clear button {
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background: #c40606;
+  color: #fff;
+  cursor: pointer;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop_clear p {
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop_clear .add_to_cart {
+  width: 250px;
+  height: 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.compare_container .compare_box .display_compare_products .compare_clear_add_to_cart .compare_return_shop a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  color: #fff;
+}/*# sourceMappingURL=Compare.css.map */

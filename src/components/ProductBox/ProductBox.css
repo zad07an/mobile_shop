@@ -13,11 +13,16 @@
   box-shadow: 0 0 10px rgb(167, 140, 140);
   z-index: 10;
 }
+.product_box:hover .product_image > img {
+  transform: scale(1.1);
+  filter: saturate(3) brightness(0.5);
+}
 .product_box .product_availablity {
   padding: 2px 15px;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
 }
 .product_box .product_availablity p {
   font-size: 14px;
@@ -27,14 +32,15 @@
   width: 100%;
   min-height: 220px;
   max-height: 220px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   background: white;
+  overflow: hidden;
 }
 .product_box .product_image img {
   width: 100%;
+  transition: 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 .product_box .product_name {
   width: 100%;

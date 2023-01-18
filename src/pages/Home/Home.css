@@ -22,9 +22,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 5px;
   border-left: 1px solid rgb(200, 200, 200);
   cursor: pointer;
   transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+}
+.home_container .products_banner .each_product::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: red;
+  border-radius: 4px;
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.25s;
+}
+.home_container .products_banner .each_product:hover::before {
+  scale: 1;
 }
 .home_container .products_banner .each_product:hover {
   background: rgba(76, 24, 172, 0.1647058824);
@@ -78,4 +97,15 @@
   .home_container .dislpay_products .products_list {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.home_container .dislpay_products .products_list .loading_status,
+.home_container .dislpay_products .products_list .error_status {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_container .dislpay_products .products_list .loading_status h2,
+.home_container .dislpay_products .products_list .error_status h2 {
+  font-size: 26px;
 }/*# sourceMappingURL=Home.css.map */

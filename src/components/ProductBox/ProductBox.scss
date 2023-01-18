@@ -16,11 +16,17 @@
     z-index: 10;
   }
 
+  &:hover .product_image > img {
+    transform: scale(1.1);
+    filter: saturate(3) brightness(0.5);
+  }
+
   .product_availablity {
     padding: 2px 15px;
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
 
     p {
       font-size: 14px;
@@ -32,14 +38,15 @@
     width: 100%;
     min-height: 220px;
     max-height: 220px;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
+    overflow: hidden;
 
     img {
       width: 100%;
+      transition: 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
     }
   }
 
