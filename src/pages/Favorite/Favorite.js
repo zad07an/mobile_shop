@@ -5,8 +5,10 @@ import { clearFavorite, getFavoriteProductsQuantity } from '../../store/Favorite
 import { HiOutlineArrowSmLeft } from 'react-icons/hi'
 import FavoriteBox from '../../components/FavoriteBox/FavoriteBox';
 import './Favorite.css'
+import { tabTitle } from '../../PageTabTitle/pageTabTitle';
 
 export default function Favorite() {
+  tabTitle('Ֆավորիտներ - MobiShop')
   const products = useSelector((state) => state.favorite);
   const dispatch = useDispatch();
 
@@ -32,22 +34,13 @@ export default function Favorite() {
           </div>
         ) : (
           <div className='display_favorite_products'>
-              <div className='favorite_products'>
-              <div></div>
-              <div></div>
-              <div>
-                <p>Ապրանք</p>
-              </div>
-              <div>
-              <p>Գին</p>
-              </div>
-              <div>
-                <p>Ավելացնել</p>
-              </div>
+            <div className='favorite_products'>
+              {
+                products.favoriteProducts.map((product) => {
+                  return <FavoriteBox key={product.id} product={product} />;
+                })
+              }
             </div>
-              {products.favoriteProducts.map((product) => {
-                return <FavoriteBox key={product.id} product={product} />;
-              })}
             <div className='favorite_clear_add_to_cart'>
               <div className="favorite_return_shop_clear">
                 <div className="favorite_return_shop">

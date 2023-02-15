@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ddd;
+  background: rgb(230, 230, 230);
 }
 .home_container .products_banner .each_product {
   width: 200px;
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   border-left: 1px solid rgb(200, 200, 200);
   cursor: pointer;
   transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -48,8 +48,14 @@
 .home_container .products_banner .each_product:hover {
   background: rgba(76, 24, 172, 0.1647058824);
 }
+.home_container .products_banner .each_product .banner_icon {
+  font-size: 40px;
+  color: #2a53da;
+}
 .home_container .products_banner .each_product p {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(79, 79, 79);
   text-transform: uppercase;
 }
 .home_container .products_banner .each_product:nth-child(1) {
@@ -59,12 +65,17 @@
   border-left: 1px solid rgb(200, 200, 200);
 }
 .home_container .dislpay_products {
-  width: 90%;
+  width: 70%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   padding-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .home_container .dislpay_products {
+    width: 80%;
+  }
 }
 .home_container .dislpay_products .display_product_title {
   width: 100%;
@@ -81,19 +92,24 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+  grid-gap: 40px 10px;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1250px) {
   .home_container .dislpay_products .products_list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media (max-width: 840px) {
+@media (max-width: 1024px) {
   .home_container .dislpay_products .products_list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 768px) {
+  .home_container .dislpay_products .products_list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 560px) {
   .home_container .dislpay_products .products_list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -108,4 +124,10 @@
 .home_container .dislpay_products .products_list .loading_status h2,
 .home_container .dislpay_products .products_list .error_status h2 {
   font-size: 26px;
+}
+.home_container .dislpay_products .display_pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
 }/*# sourceMappingURL=Home.css.map */

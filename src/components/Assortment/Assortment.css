@@ -1,0 +1,47 @@
+.assortment_container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0 40px 0;
+}
+.assortment_container .assortment_box {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.assortment_container .assortment_box .assortment_category_box {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+.assortment_container .assortment_box .assortment_category_box:hover {
+  background: #2152F3;
+}
+.assortment_container .assortment_box .assortment_category_box:hover .assortment_icon {
+  color: white;
+}
+.assortment_container .assortment_box .assortment_category_box:hover p {
+  color: white;
+}
+.assortment_container .assortment_box .assortment_category_box .assortment_icon {
+  font-size: 80px;
+  color: #2152F3;
+  transition: 0.2s ease-in-out;
+}
+.assortment_container .assortment_box .assortment_category_box p {
+  font-size: 20px;
+  color: #2152F3;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}/*# sourceMappingURL=Assortment.css.map */

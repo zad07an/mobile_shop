@@ -3,15 +3,15 @@ import './Register.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useFormik} from "formik";
 import {registerSchema} from "../../Schemas/Validation";
+import { tabTitle } from '../../PageTabTitle/pageTabTitle';
 
 function Register() {
 
+  tabTitle('Գրանցում - MobiShop')
   const navigate = useNavigate();
-  // const user = useLocation((state) => state.user)
 
   const onSubmit = async (values, actions) => {
     try {
-
       await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       actions.resetForm()
 
@@ -37,12 +37,9 @@ function Register() {
 
   return (
     <section className='register_container'>
-      <div className="register_title">
-        <Link to=''>MobiShop</Link>
-      </div>
       <form action="" className='register_form' onSubmit={formik.handleSubmit}>
         <div className="register_form_title">
-          <h2>Register</h2>
+          <h2>Register <span>MobiShop</span></h2>
         </div>
         <div className="register_fname_lname">
           <div className="fname_input">

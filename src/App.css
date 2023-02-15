@@ -19,3 +19,77 @@
 ::-webkit-scrollbar-thumb {
   background: #4C18AC;
 }
+
+.pagination_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.prev_button {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  background: #4A28B1;
+  cursor: pointer;
+}
+
+.prev_button > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+}
+
+.next_button {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  background: #4A28B1;
+  cursor: pointer;
+}
+
+.next_button > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+}
+
+.prev_button:active {
+  background: #5d3ac8;
+}
+
+.next_button:active {
+  background: #5d3ac8;
+}
+
+.page_buttons {
+  width: 40px;
+  height: 40px;
+  background: #4A28B1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+
+.page_buttons > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+}
+
+.active_page_button {
+  background: crimson;
+}

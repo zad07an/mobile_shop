@@ -199,7 +199,11 @@
         background: white;
         border-radius: 5px;
 
-        @include desktop_md {
+        @include desktop_xl {
+          width: 250px;
+        }
+
+        @include desktop_lg {
           width: 60px;
           background: transparent;
         }
@@ -211,7 +215,7 @@
           justify-content: center;
           align-items: center;
 
-          @include desktop_md {
+          @include desktop_lg {
             width: 100%;
             background: transparent;
           }
@@ -226,7 +230,7 @@
             font-size: 16px;
             font-family: sans-serif;
 
-            @include desktop_md {
+            @include desktop_lg {
               display: none;
             }
           }
@@ -238,14 +242,30 @@
             justify-content: center;
             align-items: center;
             font-size: 22px;
+            color: black;
             background: transparent;
             border: none;
             cursor: pointer;
 
-            @include desktop_md {
-              width: 100%;
-              color: white;
+            @include desktop_lg {
+              display: none;
+            }
+          }
+
+          .active_search_icon {
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+
+            @include desktop_lg {
               font-size: 28px;
+              display: flex;
             }
           }
         }
@@ -321,10 +341,19 @@
         cursor: pointer;
         gap: 5px;
 
-        span {
-          font-size: 16px;
-          color: white;
-          font-family: sans-serif;
+        .user_logout, .user_login {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            font-size: 16px;
+            color: white;
+            font-family: sans-serif;
+          }
         }
       }
 
@@ -351,5 +380,4 @@
     font-family: sans-serif;
     padding-left: 20px;
   }
-
 }

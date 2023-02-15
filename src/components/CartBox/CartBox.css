@@ -1,81 +1,168 @@
 .basket_product_box {
-  width: 100%;
-  height: 120px;
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 3fr 1fr 1fr;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #ccc;
-  align-items: center;
-}
-.basket_product_box .basket_remove_box button {
-  width: 100%;
+  min-height: 500px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background: transparent;
-  color: red;
-  border: none;
-  cursor: pointer;
-  font-size: 26px;
-}
-.basket_product_box .basket_image_box {
-  height: 100%;
-  padding: 10px 0;
+  flex-direction: column;
+  position: relative;
   overflow: hidden;
+  transition: 0.2s linear;
+  box-shadow: 0 2px 10px rgb(167, 140, 140);
+  padding-bottom: 10px;
+}
+.basket_product_box:hover {
+  z-index: 10;
+}
+.basket_product_box:hover .product_image > img {
+  transform: scale(1.1);
+  filter: saturate(3) brightness(0.4);
+}
+.basket_product_box:hover .product_image > div {
+  opacity: 1;
+  z-index: 100;
+}
+.basket_product_box .product_availablity {
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2px 0;
+  position: absolute;
+  top: 25px;
+  left: -60px;
+  transform: rotate(-45deg);
+  z-index: 100;
 }
-.basket_product_box .basket_image_box .basket_product_image {
-  width: 120px;
-  height: 100%;
+.basket_product_box .product_availablity p {
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.basket_product_box .product_image {
+  width: 100%;
+  min-height: 280px;
+  max-height: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: white;
-  margin: auto;
-  overflow: hidden;
-  padding: 5px;
-  border: 0.5px solid #ccc;
-}
-.basket_product_box .basket_image_box .basket_product_image img {
-  width: 100%;
-  background-size: cover;
   background-position: center;
+  overflow: hidden;
+  position: relative;
 }
-.basket_product_box .basket_name_box {
-  color: black;
-  font-size: 20px;
+.basket_product_box .product_image img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: 0.2s ease-in-out;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.basket_product_box .basket_price_box {
-  font-size: 20px;
-}
-.basket_product_box .basket_count_box button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.basket_product_box .product_image div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  font-size: 40px;
   border: none;
-  font-size: 22px;
-  background: #4C18AC;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
-.basket_product_box .basket_count_box .basket_product_quantity {
-  display: inline-block;
-  min-width: 40px;
+.basket_product_box .product_image:hover {
+  background: black;
 }
-.basket_product_box .basket_count_box .basket_product_quantity p {
-  font-size: 22px;
+.basket_product_box .product_name {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.basket_product_box .product_name p {
+  font-size: 14px;
+  font-weight: bold;
   text-align: center;
 }
-.basket_product_box .total_price_box {
-  font-size: 22px;
+.basket_product_box .product_brand {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.basket_product_box td {
-  height: 100px;
-  border-left: none;
-  border-right: none;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+.basket_product_box .product_brand p {
+  font-size: 16px;
+  color: gray;
+  text-align: center;
+}
+.basket_product_box .product_price {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.basket_product_box .product_price p {
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.basket_product_box .product_price p span {
+  font-size: 15px;
+  color: #2152f3;
+}
+.basket_product_box .basket_count_box {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.basket_product_box .basket_count_box .basket_product_quantity {
+  font-size: 18px;
+}
+.basket_product_box .basket_count_box button {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  background: #2152f3;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+.basket_product_box .remove_button {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.basket_product_box .remove_button button {
+  width: 150px;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  background: crimson;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product_limited {
+  background: rgb(205, 160, 11);
+}
+
+.product_not_available {
+  background: red;
+}
+
+.product_available {
+  background: #1fb31f;
 }/*# sourceMappingURL=CartBox.css.map */

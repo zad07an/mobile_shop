@@ -1,0 +1,23 @@
+.pagination_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 0 20px 0;
+}
+.pagination_container button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  border: 1px solid black;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagination_container .active_page {
+  color: white;
+  background: rgb(22, 150, 26);
+}/*# sourceMappingURL=Pagination.css.map */

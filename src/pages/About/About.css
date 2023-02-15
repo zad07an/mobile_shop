@@ -1,0 +1,74 @@
+.about_container {
+  width: 100%;
+  min-height: 100hv;
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 40px 0;
+}
+.about_container .about_box {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+}
+.about_container .about_box .about_us_box .about_title h2 {
+  font-size: 36px;
+  font-weight: 500;
+}
+.about_container .about_box .about_us_box .about_desc {
+  padding-top: 10px;
+}
+.about_container .about_box .about_us_box .about_desc p {
+  font-size: 15px;
+}
+.about_container .about_box .about_us_box .about_address {
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.about_container .about_box .about_us_box .about_address p {
+  font-size: 15px;
+  color: #383838;
+}
+.about_container .about_box .about_us_box .about_address p a {
+  color: #2196f3;
+}
+.about_container .about_box .about_image_box .image_box {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 20px 20px 20px;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://www.paradiso-kos.net/wp-content/uploads/2020/08/rsz_mana_web__mg_8522.jpg");
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px black;
+}
+.about_container .about_box .about_image_box .image_box div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 40px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(54, 54, 54);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+.about_container .about_box .about_image_box .image_box div span {
+  font-size: 24px;
+  color: rgb(171, 171, 171);
+}
+.about_container .about_box .about_image_box .image_box div p {
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(220, 90, 20);
+}/*# sourceMappingURL=About.css.map */

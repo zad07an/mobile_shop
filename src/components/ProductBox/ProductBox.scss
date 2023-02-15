@@ -2,7 +2,7 @@
 
 .product_box {
   width: 100%;
-  min-height: 450px;
+  min-height: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,100 +10,155 @@
   position: relative;
   overflow: hidden;
   transition: 0.2s linear;
+  box-shadow: 0 2px 10px rgb(167, 140, 140);
+  padding-bottom: 10px;
 
   &:hover {
-    box-shadow: 0 0 10px rgb(167, 140, 140);
     z-index: 10;
   }
 
   &:hover .product_image > img {
     transform: scale(1.1);
-    filter: saturate(3) brightness(0.5);
+    filter: saturate(3) brightness(0.4);
+  }
+
+  &:hover .product_image > div {
+    opacity: 1;
+    z-index: 100;
   }
 
   .product_availablity {
-    padding: 2px 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 0;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 25px;
+    left: -60px;
+    transform: rotate(-45deg);
     z-index: 100;
 
     p {
       font-size: 14px;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .product_type {
+    width: 150px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: crimson;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 0 5px black;
+    z-index: 100;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
       color: white;
     }
   }
 
   .product_image {
     width: 100%;
-    min-height: 220px;
-    max-height: 220px;
+    min-height: 250px;
+    max-height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
+    background-position: center;
     overflow: hidden;
+    position: relative;
 
     img {
       width: 100%;
-      transition: 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+      height: 100%;
+      position: absolute;
+      transition: 0.2s ease-in-out;
+      object-fit: cover;
+    }
+
+    div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      font-size: 40px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    &:hover {
+      background: black;
     }
   }
 
   .product_name {
-    width: 100%;
-    min-height: 60px;
+    width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 0 10px;
 
     p {
-      font-size: 16px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    span {
-      font-size: 20px;
+      font-size: 14px;
       font-weight: bold;
+      text-align: center;
     }
   }
 
-  .product_per_month {
+  .product_brand {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 10px;
 
-    @include tablet_xs {
-      flex-direction: column;
-      gap: 5px;
+    p {
+      font-size: 16px;
+      color: gray;
+      text-align: center;
     }
+  }
 
-    span {
-      font-size: 14px;
-      color: #2196f3;
-    }
+  .product_price {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .product_rating {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2px;
+    p {
+      font-size: 15px;
+      font-weight: bold;
+      color: black;
 
-      .star_icon {
-        color: goldenrod;
+      span {
+        font-size: 15px;
+        color: #2152f3;
       }
     }
+
   }
 
   .product_button {
     width: 100%;
+    height: 40px;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: repeat(3, 1fr);
 
     .product_fav {
       display: flex;
@@ -111,7 +166,7 @@
       align-items: center;
       border: none;
       background: transparent;
-      border-top: 0.5px solid #ccc;
+      cursor: pointer;
 
       .fav_icon {
         font-size: 22px;
@@ -125,8 +180,8 @@
       align-items: center;
       border: none;
       background: transparent;
-      border-top: 0.5px solid #ccc;
       border-left: 0.5px solid #ccc;
+      cursor: pointer;
 
       .compare_icon {
         font-size: 22px;
@@ -135,27 +190,29 @@
     }
 
     button {
-      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 5px;
-      font-size: 16px;
-      font-weight: bold;
       border: none;
-      background: #4C18AC;
-      color: white;
+      background: transparent;
+      border-left: 1px solid #ccc;
       cursor: pointer;
 
       .basket_icon {
         font-size: 22px;
+        color: #4C18AC;
+      }
+
+      .check_icon {
+        font-size: 22px;
+        color: #1fb31f;
       }
     }
   }
 }
 
 .product_limited {
-  background: gold;
+  background: rgb(205, 160, 11);
 }
 
 .product_not_available {
@@ -163,5 +220,5 @@
 }
 
 .product_available {
-  background: #32CD32;
+  background: #1fb31f;
 }

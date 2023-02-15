@@ -1,18 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearCart, getTotalAmount } from "../../store/CartSlice";
+import { clearCart, fetchCartProducts, getTotalAmount, setCartProducts } from "../../store/CartSlice";
 import CartBox from "../../components/CartBox/CartBox";
 import {HiOutlineArrowSmLeft} from 'react-icons/hi'
 import "./Cart.css";
+import { tabTitle } from "../../PageTabTitle/pageTabTitle";
+import axios from "axios";
 
 export default function Cart() {
   // const {clearAllCartProducts, totalPrice} = useContext(ShopContext);
+  tabTitle('Զամբյուղ - MobiShop')
   const products = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user.userLogged);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(fetchCartProducts())
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getTotalAmount())
@@ -38,30 +45,21 @@ export default function Cart() {
               user ? null :
               <div className="cart_login_box">
                 <p>Մուտք գործեք համակարգ, որպեսզի <br/> պահպանեք բոլոր գործարքների մանրամասները։</p>
-                <button>Մուտք</button>
+                <button onClick={() => navigate('/login')}>Մուտք</button>
               </div>
             }
             <div className='display_cart_products'>
-              <div border='1px' className='basket_products'>
-                <div></div>
-                <div></div>
-                <div>
-                  <p>Ապրանք</p>
-                </div>
-                <div>
-                <p>Գին</p>
-                </div>
-                <div>
-                  <p>Քանակ</p>
-                </div>
-              </div>
-                {products.cartProducts.map((product) => {
+              <div className="cart_products">
+                {
+                  products.cartProducts.map((product) => {
                   return <CartBox key={product.id} product={product} />;
-                })}
+                  })
+                }
+              </div>
               <div className='basket_total_price'>
                 <div className="basket_total_price_clear">
                   <button onClick={() => dispatch(clearCart(products.cartProducts))}>Հեռացնել Ամբողջը</button>
-                  <p>Ընդանուր գումարը` {products.cartTotalAmount}դր․</p>
+                  <p>Ընդանուր գումարը` {products.cartTotalAmount} AMD</p>
                 </div>
               </div>
             </div>
@@ -70,44 +68,44 @@ export default function Cart() {
         {
           products.cartProducts.length === 0 ? null :
             <>
-              <form action="" className="basket_form" autoComplete="false">
+              <form action="" className="basket_form" autoComplete="false" onSubmit={(e) => e.preventDefault()}>
                 <div className="bsket_form_title">
                   <h2>Առաքման տվյալներ</h2>
                 </div>
-              <div className="basket_form_grid">
-                <div className="basket_form_fname_lname">
-                  <div className="basket_form_fname">
-                    <label htmlFor="fname">Անուն*</label>
-                    <input type="text" name="firstName" id="fname" placeholder="Գրեք ձեր անունը" />
+                <div className="basket_form_grid">
+                  <div className="basket_form_fname_lname">
+                    <div className="basket_form_fname">
+                      <label htmlFor="fname">Անուն*</label>
+                      <input type="text" name="firstName" id="fname" placeholder="Գրեք ձեր անունը" />
+                    </div>
+                    <div className="basket_form_lname">
+                      <label htmlFor="lname">Ազգանուն*</label>
+                      <input type="text" name="lastName" id="lname" placeholder="Գրեք ձեր ազգանունը" />
+                    </div>
                   </div>
-                  <div className="basket_form_lname">
-                    <label htmlFor="lname">Ազգանուն*</label>
-                    <input type="text" name="lastName" id="lname" placeholder="Գրեք ձեր ազգանունը" />
+                  <div className="basket_form_tel_email">
+                    <div className="basket_form_tel">
+                      <label htmlFor="tel">Բջջային հեռախոս*</label>
+                      <input type="tel" name="phoneNumber" id="tel" placeholder="Գրեք ձեր բջջային հեռախոսահամարը" />
+                    </div>
+                    <div className="basket_form_email">
+                      <label htmlFor="email">Էլ․ փոստ*</label>
+                      <input type="email" name="email" id="email" placeholder="Գրեք ձեր էլ․ հասցեն" />
+                    </div>
                   </div>
                 </div>
-                <div className="basket_form_tel_email">
-                  <div className="basket_form_tel">
-                    <label htmlFor="tel">Բջջային հեռախոս*</label>
-                    <input type="tel" name="phoneNumber" id="tel" placeholder="Գրեք ձեր բջջային հեռախոսահամարը" />
-                  </div>
-                  <div className="basket_form_email">
-                    <label htmlFor="email">Էլ․ փոստ*</label>
-                    <input type="email" name="email" id="email" placeholder="Գրեք ձեր էլ․ հասցեն" />
-                  </div>
+                <div className="basket_box_address">
+                  <label htmlFor="address">Հասցե*</label>
+                    <input type="address" name="address" id="address" placeholder="Գրեք ձեր տուն/շենք/փողոց" />
                 </div>
-              </div>
-              <div className="basket_box_address">
-                <label htmlFor="address">Հասցե*</label>
-                  <input type="address" name="address" id="address" placeholder="Գրեք ձեր տուն/շենք/փողոց" />
-              </div>
-              <div className="basket_form_message">
-                <label htmlFor="message">Նշումներ*</label>
-                <textarea name="message" id="message" placeholder="Կատարեք նշումներ"></textarea>
-              </div>
-              <div className="basket_return_shop_checkout">
-                <Link to='/'><HiOutlineArrowSmLeft size={22}/>Շարունակել գնումները</Link>
-                <button>Վճարել</button>
-              </div>
+                <div className="basket_form_message">
+                  <label htmlFor="message">Նշումներ*</label>
+                  <textarea name="message" id="message" placeholder="Կատարեք նշումներ"></textarea>
+                </div>
+                <div className="basket_return_shop_checkout">
+                  <Link to='/'><HiOutlineArrowSmLeft size={22}/>Շարունակել գնումները</Link>
+                  <button>Վճարել</button>
+                </div>
             </form>
           </>
         }

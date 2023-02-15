@@ -175,7 +175,7 @@
   align-items: center;
   gap: 30px;
 }
-@media (max-width: 1250px) {
+@media (max-width: 1150px) {
   .header .nav .menu_cart_fav_login_items {
     gap: 20px;
   }
@@ -188,6 +188,11 @@
   align-items: center;
   background: white;
   border-radius: 5px;
+}
+@media (max-width: 1440px) {
+  .header .nav .menu_cart_fav_login_items .nav_search {
+    width: 250px;
+  }
 }
 @media (max-width: 1250px) {
   .header .nav .menu_cart_fav_login_items .nav_search {
@@ -230,15 +235,31 @@
   justify-content: center;
   align-items: center;
   font-size: 22px;
+  color: black;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 @media (max-width: 1250px) {
   .header .nav .menu_cart_fav_login_items .nav_search .search_box button {
-    width: 100%;
-    color: white;
+    display: none;
+  }
+}
+.header .nav .menu_cart_fav_login_items .nav_search .search_box .active_search_icon {
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+@media (max-width: 1250px) {
+  .header .nav .menu_cart_fav_login_items .nav_search .search_box .active_search_icon {
     font-size: 28px;
+    display: flex;
   }
 }
 .header .nav .menu_cart_fav_login_items .fav_box, .header .nav .menu_cart_fav_login_items .cart_box, .header .nav .menu_cart_fav_login_items .compare_box {
@@ -308,7 +329,15 @@
   cursor: pointer;
   gap: 5px;
 }
-.header .nav .menu_cart_fav_login_items .login_box span {
+.header .nav .menu_cart_fav_login_items .login_box .user_logout, .header .nav .menu_cart_fav_login_items .login_box .user_login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.header .nav .menu_cart_fav_login_items .login_box .user_logout span, .header .nav .menu_cart_fav_login_items .login_box .user_login span {
   font-size: 16px;
   color: white;
   font-family: sans-serif;

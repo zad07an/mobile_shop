@@ -1,37 +1,46 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromFavortie } from '../../store/FavoriteSlice';
-import { RiCloseFill } from "react-icons/ri";
-import {FaRegCheckCircle} from 'react-icons/fa'
+import { MdZoomOutMap } from "react-icons/md";
+import { FaRegCheckCircle } from 'react-icons/fa';
+import { BsTrash } from 'react-icons/bs';
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { AiOutlineCheck } from 'react-icons/ai';
 import './FavoriteBox.css'
 import { addToCart } from '../../store/CartSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function FavoriteBox({product}) {
 
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+
+  const viewProduct = (product) => {
+    navigate(`/shop/${product.category}/product/${product.id}/${product.title}`)
+  }
 
   const addedToCart = cartProducts.cartProducts.find((item) => item.id === product.id);
-  const addedToCartStyle = addedToCart ? {background: '#4FB807', cursor: 'auto'} : null
+  const addedToCartStyle = addedToCart ? {color: '#4FB807'} : null
 
   return (
     <div className='favorite_product_box'>
-      <div className='favorite_remove_box'>
-        <button onClick={() => dispatch(removeFromFavortie(product))}>
-          <RiCloseFill />
-        </button>
+      <div className='product_image'>
+        <img src={product.thumbnail} alt="" />
+        <div onClick={() => viewProduct(product)}><MdZoomOutMap/></div>
       </div>
-      <div className='favorite_image_box'>
-        <div className='favorite_product_image'>
-          <img src={product.thumbnail} alt='' />
-        </div>
+      <div className='product_name'>
+        <p>{product.title} {product.color_name}</p>
       </div>
-      <div className='favorite_name_box'>{product.title}</div>
-      <div className='favorite_price_box'>{product.price}դր․</div>
-      <div className="favorite_box_add_button">
-        <button disabled={addedToCart} style={addedToCartStyle} onClick={() => dispatch(addToCart(product))}>
-          {addedToCart ? <>Ավելացված է <FaRegCheckCircle size={20}/></> : <>Ավելացնել զամբյուղում</>}
-        </button>
+      <div className="product_brand">
+        <p>{product.brand}</p>
+      </div>
+      <div className="product_price">
+        <p>{product.price} <span>AMD</span></p>
+      </div>
+      <div className="favorite_box_buttons">
+        <button className='remove_button' onClick={() => dispatch(removeFromFavortie(product))}><BsTrash/></button>
+        <button className='add_button' onClick={() => dispatch(addToCart(product))} style={addedToCartStyle}>{addedToCart ? <AiOutlineCheck/> : <HiOutlineShoppingCart/>}</button>
       </div>
     </div>
   )

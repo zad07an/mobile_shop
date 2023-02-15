@@ -1,0 +1,31 @@
+.product_specification_container {
+  width: 90%;
+}
+.product_specification_container .product_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.product_specification_container .product_table .table_header {
+  height: 40px;
+  background: #DADADA;
+  text-align: left;
+}
+.product_specification_container .product_table .table_header th {
+  height: 100%;
+  padding: 0 10px;
+  border-left: 1px solid #DADADA;
+}
+.product_specification_container .product_table .table_body tr {
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 0.5px solid #DADADA;
+  border-right: 0.5px solid #DADADA;
+}
+.product_specification_container .product_table .table_body tr td {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-left: 1px solid #DADADA;
+}/*# sourceMappingURL=ProductSpec.css.map */

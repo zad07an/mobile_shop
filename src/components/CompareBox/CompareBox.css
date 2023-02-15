@@ -24,14 +24,17 @@
 }
 .compare_product_box .compare_image_box {
   width: 50%;
-  height: 300px;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-position: center;
 }
 .compare_product_box .compare_image_box img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .compare_product_box .compare_brand_box {
   width: 90%;
@@ -52,5 +55,9 @@
   align-items: center;
 }
 .compare_product_box .compare_price_box p {
-  color: green;
+  color: black;
+  font-weight: bold;
+}
+.compare_product_box .compare_price_box p span {
+  color: #2152F3;
 }/*# sourceMappingURL=CompareBox.css.map */

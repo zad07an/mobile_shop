@@ -1,0 +1,173 @@
+.footer {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #4A28B1;
+}
+.footer .footer_box {
+  width: 90%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  padding-top: 20px;
+}
+.footer .footer_box .footer_logo_social_medias {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 200px;
+}
+.footer .footer_box .footer_logo_social_medias .footer_logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .footer_box .footer_logo_social_medias .footer_logo a {
+  font-size: 34px;
+  color: white;
+  font-weight: bold;
+}
+.footer .footer_box .footer_logo_social_medias .footer_logo a span {
+  color: crimson;
+}
+.footer .footer_box .footer_logo_social_medias .footer_logo p {
+  font-size: 14px;
+  color: white;
+}
+.footer .footer_box .footer_logo_social_medias .footer_social_medias {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.footer .footer_box .footer_logo_social_medias .footer_social_medias div .footer_social_icons {
+  font-size: 28px;
+  color: white;
+}
+.footer .footer_box .footer_shopping {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .footer_box .footer_shopping .footer_shopping_title p {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+.footer .footer_box .footer_shopping .footer_shopping_links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer .footer_box .footer_shopping .footer_shopping_links a {
+  font-size: 16px;
+  color: white;
+}
+.footer .footer_box .footer_links_box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .footer_box .footer_links_box .footer_links_title p {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+.footer .footer_box .footer_links_box .footer_links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer .footer_box .footer_links_box .footer_links a {
+  font-size: 16px;
+  color: white;
+}
+.footer .footer_box .footer_send_message {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 200px;
+}
+.footer .footer_box .footer_send_message .footer_message_title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .footer_box .footer_send_message .footer_message_title p {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+.footer .footer_box .footer_send_message .footer_message_title span {
+  font-size: 14px;
+  color: white;
+}
+.footer .footer_box .footer_send_message .footer_message_input {
+  width: 90%;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+.footer .footer_box .footer_send_message .footer_message_input input {
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: 0;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  caret-color: red;
+  caret-shape: 4px;
+}
+.footer .footer_box .footer_send_message .footer_message_input input::-moz-placeholder {
+  color: white;
+}
+.footer .footer_box .footer_send_message .footer_message_input input::placeholder {
+  color: white;
+}
+.footer .footer_box .footer_send_message .footer_message_input div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer_box .footer_send_message .footer_message_input div .send_icon {
+  font-size: 24px;
+  color: white;
+}
+.footer .footer_copyright {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ccc;
+}
+.footer .footer_copyright p {
+  font-size: 16px;
+  color: white;
+}/*# sourceMappingURL=Footer.css.map */

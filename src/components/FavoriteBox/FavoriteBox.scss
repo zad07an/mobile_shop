@@ -1,81 +1,169 @@
 @import '../../breakpoints';
 
 .favorite_product_box {
-  width: 100%;
-  height: 120px;
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 2fr 1fr 1fr;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #ccc;
+  min-height: 430px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s linear;
+  box-shadow: 0 2px 10px rgb(167, 140, 140);
+  padding-bottom: 10px;
 
-  .favorite_remove_box {
-
-    button {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: transparent;
-      color: red;
-      border: none;
-      cursor: pointer;
-      font-size: 26px;
-    }
+  &:hover {
+    z-index: 10;
   }
 
-  .favorite_image_box {
-    height: 100%;
-    padding: 10px 0;
-    overflow: hidden;
+  &:hover .product_image > img {
+    transform: scale(1.1);
+    filter: saturate(3) brightness(0.4);
+  }
+
+  &:hover .product_image > div {
+    opacity: 1;
+    z-index: 100;
+  }
+
+  .product_availablity {
+    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2px 0;
+    position: absolute;
+    top: 25px;
+    left: -60px;
+    transform: rotate(-45deg);
+    z-index: 100;
 
-    .favorite_product_image {
-      width: 120px;
+    p {
+      font-size: 14px;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .product_image {
+    width: 100%;
+    min-height: 280px;
+    max-height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: 0.2s ease-in-out;
+      object-fit: cover;
+    }
+
+    div {
+      width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: white;
-      margin: auto;
-      overflow: hidden;
-      padding: 5px;
-      border: 0.5px solid #ccc;
+      opacity: 0;
+      font-size: 40px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
 
-      img {
-        width: 100%;
-        background-size: cover;
-        background-position: center;
-      }
+    &:hover {
+      background: black;
     }
   }
 
-  .favorite_name_box {
-    color: black;
-    font-size: 20px;
+  .product_name {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
   }
 
-  .favorite_price_box {
-    font-size: 20px;
+  .product_brand {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 16px;
+      color: gray;
+      text-align: center;
+    }
   }
 
-  .favorite_box_add_button {
-    button {
-      width: 220px;
-      height: 40px;
+  .product_price {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 15px;
+      font-weight: bold;
+      color: black;
+
+      span {
+        font-size: 15px;
+        color: #2152f3;
+      }
+    }
+
+  }
+
+  .favorite_box_buttons {
+    width: 100%;
+    height: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .remove_button, .add_button {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      font-size: 18px;
       border: none;
-      border-radius: 5px;
-      background: #000;
-      color: #fff;
+      background: transparent;
       cursor: pointer;
+      font-size: 22px;
+      color: crimson;
+    }
+
+    .add_button {
+      border-left: 0.5px solid #ccc;
+      color: #4C18AC;
     }
   }
+}
+
+.product_limited {
+  background: rgb(205, 160, 11);
+}
+
+.product_not_available {
+  background: red;
+}
+
+.product_available {
+  background: #1fb31f;
 }

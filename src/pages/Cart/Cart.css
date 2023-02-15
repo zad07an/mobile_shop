@@ -14,7 +14,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 30px;
 }
 .cart_container .basket_box .basket_subtitle {
   width: 100%;
@@ -37,6 +36,11 @@
   padding: 20px 0;
   border: 0.5px solid #ccc;
   border-radius: 10px;
+}
+@media (max-width: 412px) {
+  .cart_container .basket_box .cart_login_box {
+    max-width: 400px;
+  }
 }
 .cart_container .basket_box .cart_login_box p {
   font-size: 18px;
@@ -103,18 +107,34 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 20px;
+  padding-top: 40px;
 }
-.cart_container .basket_box .display_cart_products .basket_products {
+@media (max-width: 412px) {
+  .cart_container .basket_box .display_cart_products {
+    gap: 20px;
+  }
+}
+.cart_container .basket_box .display_cart_products .cart_products {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+.cart_container .basket_box .display_cart_products .cart_products .basket_products {
   width: 100%;
   height: 50px;
   border-collapse: collapse;
   border: none;
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 3fr 1fr 1fr;
   align-items: center;
   border-bottom: 0.5px solid #ccc;
 }
-.cart_container .basket_box .display_cart_products .basket_products div {
+@media (max-width: 1024px) {
+  .cart_container .basket_box .display_cart_products .cart_products .basket_products {
+    display: none;
+  }
+}
+.cart_container .basket_box .display_cart_products .cart_products .basket_products div {
   font-weight: 400;
   padding: 10px 0;
   border: none;
@@ -127,7 +147,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10px;
 }
 .cart_container .basket_box .display_cart_products .basket_total_price .basket_total_price_clear {
   width: 100%;
@@ -137,6 +156,14 @@
   align-items: center;
   background: #6c34d5;
   padding: 0 20px;
+}
+@media (max-width: 412px) {
+  .cart_container .basket_box .display_cart_products .basket_total_price .basket_total_price_clear {
+    min-height: 120px;
+    justify-content: center;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
 }
 .cart_container .basket_box .display_cart_products .basket_total_price .basket_total_price_clear button {
   width: 200px;
@@ -152,6 +179,11 @@
   font-size: 24px;
   font-weight: 500;
   color: white;
+}
+@media (max-width: 412px) {
+  .cart_container .basket_box .display_cart_products .basket_total_price .basket_total_price_clear p {
+    font-size: 18px;
+  }
 }
 .cart_container .basket_box .basket_form {
   width: 90%;

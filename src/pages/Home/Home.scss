@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ddd;
+    background: rgb(230, 230, 230);
 
     .each_product {
       width: 200px;
@@ -25,7 +25,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       border-left: 1px solid rgb(200, 200, 200);
       cursor: pointer;
       transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -53,8 +53,15 @@
         background: #4c18ac2a;
       }
 
+      .banner_icon {
+        font-size: 40px;
+        color: #2a53da;
+      }
+
       p {
-        font-size: 16px;
+        font-size: 14px;
+        font-weight: bold;
+        color: rgb(79, 79, 79);
         text-transform: uppercase;
       }
     }
@@ -69,12 +76,16 @@
   }
 
   .dislpay_products {
-    width: 90%;
+    width: 70%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     padding-bottom: 40px;
+
+    @include tablet_xs {
+      width: 80%;
+    }
 
     .display_product_title {
       width: 100%;
@@ -93,17 +104,21 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      grid-gap: 10px;
+      grid-gap: 40px 10px;
 
-      @include tablet_lg {
+      @include desktop_lg {
         grid-template-columns: repeat(4, 1fr);
       }
 
-      @include tablet_md {
+      @include tablet_lg {
         grid-template-columns: repeat(3, 1fr);
       }
 
       @include tablet_xs {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include mobile_xl {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -118,6 +133,13 @@
           font-size: 26px;
         }
       }
+    }
+
+    .display_pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
     }
   }
 }

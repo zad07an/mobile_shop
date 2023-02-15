@@ -24,9 +24,37 @@ export default function CompareBox({ product }) {
         <span>Մոդել։</span>
         <p>{product.title}</p>
       </div>
+      <div className="compare_title_box">
+        <span>Դիսփլեյի չափսը:</span>
+        <p>{product.display_size.toFixed(2)}"</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Էկրանի կետայնությունը:</span>
+        <p>{product.display_resolution}</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Դիսփլեյի տեխնոլոգիա:</span>
+        <p>{product.display_technology}</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Հիշողություն:</span>
+        <p>{product.storage}GB</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Պրոցեսոր:</span>
+        <p>{product.processor}</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Պրոցեսորի միջուկների քանակը:</span>
+        <p>{product.processor_cores}</p>
+      </div>
+      <div className="compare_title_box">
+        <span>Գույն։</span>
+        <p>{product.color_name}</p>
+      </div>
       <div className="compare_price_box">
         <span>Գին։</span>
-        <p>{product.price}դր․</p>
+        <p>{product.price} <span>AMD</span></p>
       </div>
     </div>
   )

@@ -1,5 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "../thunks/Thunks";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchProducts = createAsyncThunk('products/fetch', async () => {
+  const res = await axios.get("http://localhost:5000/products")
+  return await res.data;
+});
 
 export const STATUSES = Object.freeze({
   IDLE: 'Idle',
@@ -19,6 +24,19 @@ const productsSlice = createSlice({
     },
     setStatus(state, action) {
       state.status = action.payload
+    },
+    incrementRating(state, action) {
+      state.data.map((product) => {
+        if (product.id === action.payload.product.id) {
+          return [
+            {
+              ...product,
+              rating: product.rating = action.payload.index + 1
+            }]
+        } else {
+          return product.rating
+        }
+      })
     }
   },
   extraReducers: (builder) => {
@@ -36,5 +54,5 @@ const productsSlice = createSlice({
   }
 })
 
-export const { setProducts, setStatus} = productsSlice.actions;
+export const { setProducts, setStatus, incrementRating} = productsSlice.actions;
 export default productsSlice.reducer;

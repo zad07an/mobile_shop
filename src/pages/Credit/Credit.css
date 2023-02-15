@@ -1,0 +1,29 @@
+.credit_container {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0 40px 0;
+}
+.credit_container .credit_box {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 30px;
+}
+.credit_container .credit_box .credit_title h2 {
+  font-size: 36px;
+  font-weight: 500;
+}
+.credit_container .credit_box .credit_desc {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 15px;
+}
+.credit_container .credit_box .credit_desc p {
+  font-size: 15px;
+  color: #383838;
+}/*# sourceMappingURL=Credit.css.map */

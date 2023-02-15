@@ -7,18 +7,6 @@
   position: relative;
   background: linear-gradient(to left, rgb(123, 92, 215), rgba(250, 250, 250, 0.9803921569));
 }
-.login_container .login_title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 40px;
-}
-.login_container .login_title a {
-  font-size: 45px;
-  font-weight: bold;
-  color: rgb(74, 40, 177);
-}
 .login_container .login_form {
   width: 600px;
   display: flex;
@@ -33,6 +21,10 @@
 }
 .login_container .login_form .login_form_title h2 {
   font-size: 36px;
+}
+.login_container .login_form .login_form_title span {
+  font-size: 36px;
+  color: #4A28B1;
 }
 .login_container .login_form .login_form_email, .login_container .login_form .login_form_pwd {
   width: 90%;

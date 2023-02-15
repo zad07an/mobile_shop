@@ -16,7 +16,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
 
     .basket_subtitle {
       width: 100%;
@@ -41,6 +40,10 @@
       padding: 20px 0;
       border: 0.5px solid #ccc;
       border-radius: 10px;
+
+      @include mobile_md {
+        max-width: 400px;
+      }
 
       p {
         font-size: 18px;
@@ -116,22 +119,38 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      gap: 20px;
+      padding-top: 40px;
 
-      .basket_products {
+      @include mobile_md {
+        gap: 20px;
+      }
+
+      .cart_products {
         width: 100%;
-        height: 50px;
-        border-collapse: collapse;
-        border: none;
         display: grid;
-        grid-template-columns: 0.5fr 1fr 3fr 1fr 1fr;
-        align-items: center;
-        border-bottom: 0.5px solid #ccc;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 10px;
 
-        div {
-          font-weight: 400;
-          padding: 10px 0;
+
+        .basket_products {
+          width: 100%;
+          height: 50px;
+          border-collapse: collapse;
           border: none;
-          font-size: 20px;
+          align-items: center;
+          border-bottom: 0.5px solid #ccc;
+
+          @include tablet_lg {
+            display: none;
+          }
+
+          div {
+            font-weight: 400;
+            padding: 10px 0;
+            border: none;
+            font-size: 20px;
+          }
         }
       }
 
@@ -142,7 +161,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-top: 10px;
 
         .basket_total_price_clear {
           width: 100%;
@@ -152,6 +170,13 @@
           align-items: center;
           background: #6c34d5;
           padding: 0 20px;
+
+          @include mobile_md {
+            min-height: 120px;
+            justify-content: center;
+            flex-direction: column-reverse;
+            gap: 10px;
+          }
 
           button {
             width: 200px;
@@ -168,9 +193,14 @@
             font-size: 24px;
             font-weight: 500;
             color: white;
+
+            @include mobile_md {
+              font-size: 18px;
+            }
           }
         }
       }
+
     }
 
     .basket_form {

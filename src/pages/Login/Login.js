@@ -2,20 +2,24 @@ import React from 'react'
 import { useFormik } from 'formik'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginSchema } from '../../Schemas/Validation'
+import { useDispatch } from 'react-redux'
 import './Login.css'
+import { userLogin } from '../../store/UserSlice'
+import { tabTitle } from '../../PageTabTitle/pageTabTitle'
 
 export default function Login() {
 
+  tabTitle('Մուտք - MobiShop')
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   // const user = useLocation((state) => state.user)
 
   const onSubmit = async (values, actions) => {
     try {
-
       await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       actions.resetForm()
-
       navigate('/')
+      dispatch(userLogin())
     } catch (err) {
       console.log(err);
     }
@@ -33,12 +37,9 @@ export default function Login() {
 
   return (
     <section className='login_container'>
-      <div className="login_title">
-        <Link to=''>MobiShop</Link>
-      </div>
       <form action="" className="login_form" onSubmit={formik.handleSubmit}>
         <div className="login_form_title">
-          <h2>Log In</h2>
+          <h2>Log In <span>MobiShop</span></h2>
         </div>
         <div className="login_form_email">
           <label htmlFor="email">Email</label>

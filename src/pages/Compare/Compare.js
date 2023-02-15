@@ -4,10 +4,12 @@ import { HiOutlineArrowSmLeft } from 'react-icons/hi'
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearCompare } from '../../store/CompareSlice';
+import { tabTitle } from "../../PageTabTitle/pageTabTitle";
 import './Compare.css'
 
 const Compare = () => {
 
+  tabTitle('Համեմատություն - MobiShop')
   const products = useSelector((state) => state.compare);
   const dispatch = useDispatch();
   const navigate = useNavigate();

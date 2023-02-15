@@ -1,20 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+
+export const STATUSES = {
+  IDLE: 'Idle',
+  LOADING: 'Loading',
+  ERROR: 'Error'
+}
 
 const initialState = {
   cartProducts: [],
   productQuantity: 0,
   cartTotalAmount: 0,
+  status: STATUSES.IDLE
 }
+
+export const fetchCartProducts = createAsyncThunk('cart/fetchCartProducts', async () => {
+  const res = await axios.get("http://localhost:5000/cart_products")
+  return await res.data;
+})
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action) {
+    setCartProducts(state, action) {
+      state.data = action.payload
+    },
+    async addToCart(state, action) {
       const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
       if (productIndex >= 0) {
-        state.cartProducts[productIndex].productQuantity += 1;
+        await axios.delete(`http://localhost:5000/cart_products/${action.payload.id}`)
+        state.cartProducts = state.cartProducts.filter((product) => product.id !== action.payload.id)
       } else {
+        await axios.post('http://localhost:5000/cart_products', { ...action.payload, productQuantity: 1})
         const tempProduct = { ...action.payload, productQuantity: 1}
         state.cartProducts.unshift(tempProduct);
       }
@@ -48,8 +67,21 @@ const cartSlice = createSlice({
       state.cartTotalAmount = total;
       state.productQuantity = quantity;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(fetchCartProducts.pending, (state, action) => {
+      state.status = STATUSES.LOADING
+    })
+    .addCase(fetchCartProducts.fulfilled, (state, action) => {
+      state.cartProducts = action.payload
+      state.status = STATUSES.IDLE;
+    })
+    .addCase(fetchCartProducts.rejected, (state, action) => {
+      state.status = STATUSES.ERROR
+    })
   }
 })
 
-export const { addToCart, removeFromCart, clearCart, getTotalAmount, increaseProduct, decreaseProduct } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, getTotalAmount, increaseProduct, decreaseProduct,setCartProducts } = cartSlice.actions;
 export default cartSlice.reducer;
