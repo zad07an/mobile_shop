@@ -1,11 +1,16 @@
 .footer {
   width: 100%;
-  height: 400px;
+  min-height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: #4A28B1;
+}
+@media (max-width: 1024px) {
+  .footer {
+    min-height: 400px;
+  }
 }
 .footer .footer_box {
   width: 90%;
@@ -13,6 +18,16 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 2fr;
   padding-top: 20px;
+}
+@media (max-width: 1024px) {
+  .footer .footer_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
 }
 .footer .footer_box .footer_logo_social_medias {
   display: flex;
@@ -22,12 +37,32 @@
   gap: 20px;
   padding-right: 200px;
 }
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_logo_social_medias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+}
 .footer .footer_box .footer_logo_social_medias .footer_logo {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   gap: 20px;
+}
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_logo_social_medias .footer_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 .footer .footer_box .footer_logo_social_medias .footer_logo a {
   font-size: 34px;
@@ -58,6 +93,26 @@
   flex-direction: column;
   gap: 20px;
 }
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_shopping {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_shopping .footer_shopping_title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .footer .footer_box .footer_shopping .footer_shopping_title p {
   font-size: 20px;
   font-weight: bold;
@@ -71,6 +126,16 @@
   flex-direction: column;
   gap: 10px;
 }
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_shopping .footer_shopping_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding-right: 0;
+  }
+}
 .footer .footer_box .footer_shopping .footer_shopping_links a {
   font-size: 16px;
   color: white;
@@ -81,6 +146,26 @@
   align-items: flex-start;
   flex-direction: column;
   gap: 20px;
+}
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_links_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_links_box .footer_links_title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .footer .footer_box .footer_links_box .footer_links_title p {
   font-size: 20px;
@@ -95,6 +180,15 @@
   flex-direction: column;
   gap: 10px;
 }
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_links_box .footer_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
 .footer .footer_box .footer_links_box .footer_links a {
   font-size: 16px;
   color: white;
@@ -107,12 +201,28 @@
   gap: 20px;
   padding-left: 200px;
 }
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_send_message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+}
 .footer .footer_box .footer_send_message .footer_message_title {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   gap: 20px;
+}
+@media (max-width: 1024px) {
+  .footer .footer_box .footer_send_message .footer_message_title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .footer .footer_box .footer_send_message .footer_message_title p {
   font-size: 20px;

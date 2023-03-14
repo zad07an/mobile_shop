@@ -3,14 +3,15 @@ import CompareBox from "../../components/CompareBox/CompareBox";
 import { HiOutlineArrowSmLeft } from 'react-icons/hi'
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearCompare } from '../../store/CompareSlice';
+import { clearCompare, fetchCompareProducts } from '../../store/CompareSlice';
 import { tabTitle } from "../../PageTabTitle/pageTabTitle";
 import './Compare.css'
+import { useEffect } from "react";
 
-const Compare = () => {
+const Compare = ({compareProducts}) => {
 
   tabTitle('Համեմատություն - MobiShop')
-  const products = useSelector((state) => state.compare);
+  const products = compareProducts;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const Compare = () => {
         <div className='compare_subtitle'>
           <h2>Համեմատություն</h2>
         </div>
-        {products.compareProducts.length === 0 ? (
+        {products.length === 0 ? (
           <div className='compare_empty_box'>
             <div className='compare_empty'>
               <div className='left_border'></div>
@@ -44,7 +45,7 @@ const Compare = () => {
               </div>
             </div> */}
             <div className="display_compare">
-              {products.compareProducts.map((product) => {
+              {products.map((product) => {
                 return <CompareBox key={product.id} product={product} />;
               })}
             </div>
@@ -57,7 +58,7 @@ const Compare = () => {
                   </Link>
                 </div>
                 <button
-                  onClick={() => dispatch(clearCompare(products.compareProducts))}>
+                  onClick={() => dispatch(clearCompare(products))}>
                   Հեռացնել Ամբողջը
                 </button>
                 {/* <button className='add_to_cart' onClick={() => dispatch(addToCartFromcompare(products.compareProducts))}>Ավելացնել զամբյուղում</button> */}

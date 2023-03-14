@@ -1,16 +1,24 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
-import { removeFromCompare } from '../../store/CompareSlice'
+import { deleteCompareProduct, removeFromCompare } from '../../store/CompareSlice'
 import './CompareBox.css'
 
 export default function CompareBox({ product }) {
 
   const dispatch = useDispatch();
 
+  const handleDeleteCompareProduct = async () => {
+    try {
+      dispatch(deleteCompareProduct(product.id));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div className='compare_product_box'>
-      <div className="compare_remove_box" onClick={() => dispatch(removeFromCompare(product))}>
+      <div className="compare_remove_box" onClick={handleDeleteCompareProduct}>
         <FaTimes size={20} color='red'/>
       </div>
       <div className="compare_image_box">
@@ -38,7 +46,7 @@ export default function CompareBox({ product }) {
       </div>
       <div className="compare_title_box">
         <span>Հիշողություն:</span>
-        <p>{product.storage}GB</p>
+        <p>{product.storage}</p>
       </div>
       <div className="compare_title_box">
         <span>Պրոցեսոր:</span>

@@ -2,9 +2,9 @@ import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { fetchSingleProduct, STATUSES } from '../../store/SingleProduct';
-import { addToCart } from '../../store/CartSlice';
-import { addToCompare } from '../../store/CompareSlice';
-import { addToFavorite } from '../../store/FavoriteSlice';
+import { addProductCart, addToCart, deleteProductCart } from '../../store/CartSlice';
+import { addCompareProduct, addToCompare, deleteCompareProduct } from '../../store/CompareSlice';
+import { addFavoriteProduct, addToFavorite, deleteFavoriteProduct } from '../../store/FavoriteSlice';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { TbArrowsShuffle } from 'react-icons/tb';
 import { HiOutlineShoppingCart } from "react-icons/hi";
@@ -16,6 +16,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import ProductSpec from '../../components/ProductSpec/ProductSpec';
 import './Details.css';
+import { Button } from '@mui/material';
 
 export default function Details() {
 
@@ -47,6 +48,54 @@ export default function Details() {
   }, [compare.compareProducts, singleProduct.id])
 
   const addedToCartStyle = { background: addedToCart ? '#4FB807' : '#4C18AC' }
+
+  const handleAddProductCart = async () => {
+    try {
+      dispatch(addProductCart(singleProduct))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteProductCart = async () => {
+    try {
+      dispatch(deleteProductCart(singleProduct.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleAddCompareProduct = async () => {
+    try {
+      dispatch(addCompareProduct(singleProduct))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteCompareProduct = async () => {
+    try {
+      dispatch(deleteCompareProduct(singleProduct.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleAddFavoriteProduct = async () => {
+    try {
+      dispatch(addFavoriteProduct(singleProduct))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteFavoriteProduct = async () => {
+    try {
+      dispatch(deleteFavoriteProduct(singleProduct.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (status === STATUSES.LOADING) {
     return (
@@ -118,20 +167,27 @@ export default function Details() {
             <p>*ՀՀ օրենսդրության համապատասխան 300.000 դրամից ավելի գնումը վճարվում է անկանխիկ (քարտային) եղանակով</p>
           </div>
           <div className="details">
-              <button className='add_to_fav' onClick={() => dispatch(addToFavorite(singleProduct))}>
               {
-                addedToFavorite ? <><FaHeart className='fav_icon' color="#E73B3B" size={24}/></> :
-                <><FaRegHeart className='fav_icon' size={24}/></>
+                addedToFavorite ?
+                <Button className='add_to_fav' onClick={handleDeleteFavoriteProduct}><FaHeart className='fav_icon' color="#E73B3B" size={24}/>
+                </Button> :
+                <Button className='add_to_fav' onClick={handleAddFavoriteProduct}><FaRegHeart className='fav_icon' size={24}/></Button>
               }
-              </button>
-              <button className='add_to_compare' onClick={() => dispatch(addToCompare(singleProduct))}>
               {
-                addedToCompare ? <TbArrowsShuffle className='compare_icon' style={{color: '#E73B3B'}} size={24}/> : <TbArrowsShuffle className='compare_icon' size={24} />
+                addedToCompare ?
+                <Button className='add_to_compare' onClick={handleDeleteCompareProduct}>
+                  <TbArrowsShuffle className='compare_icon' color='#E73B3B' size={24}/>
+                </Button> : 
+                <Button className='add_to_compare' onClick={handleAddCompareProduct}>
+                  <TbArrowsShuffle className='compare_icon' size={24} />
+                </Button>
               }
-              </button>
-              <button className='add_to_cart' style={addedToCartStyle} onClick={() => dispatch(addToCart(singleProduct))}>
-              {addedToCart ? <><FaRegCheckCircle size={22}/>Ավելացված է</> : <><HiOutlineShoppingCart className='basket_icon' size={24}/>Ավելացնել</>}
-              </button>
+              {
+                addedToCart ?
+                <Button className='add_to_cart' style={addedToCartStyle} onClick={handleDeleteProductCart}>
+                  <FaRegCheckCircle size={22}/>Ավելացված է</Button> :
+                <Button className='add_to_cart' onClick={handleAddProductCart}><HiOutlineShoppingCart className='basket_icon' size={24}/>Ավելացնել</Button>
+              }
           </div>
         </div>
       </div>

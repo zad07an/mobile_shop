@@ -2,13 +2,45 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MdZoomOutMap } from "react-icons/md";
-import { decreaseProduct, increaseProduct, removeFromCart } from "../../store/CartSlice";
+import { decreaseProduct, deleteProductCart, deleteProductOnDecrese, increaseProduct, increseProductQuantity, removeFromCart } from "../../store/CartSlice";
 import './CartBox.css'
 
 export default function CartBox({ product }) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleRemoveProduct = async () => {
+    try {
+      dispatch(deleteProductCart(product.id));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleIncrease = async () => {
+    try {
+      dispatch(increseProductQuantity(product))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleRemoveOnDecrese = async () => {
+    try {
+      dispatch(deleteProductOnDecrese(product))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteProductCart = async () => {
+    try {
+      dispatch(deleteProductCart(product.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const viewProduct = (product) => {
     navigate(`/shop/${product.category}/product/${product.id}/${product.title}`)
@@ -19,7 +51,7 @@ export default function CartBox({ product }) {
   return (
     <div className='basket_product_box'>
       <div className='product_image'>
-        <img src={product.thumbnail} alt="" />
+        <img src={product.thumbnail} alt={product.title} />
         <div onClick={() => viewProduct(product)}><MdZoomOutMap/></div>
       </div>
       <div className='product_name'>
@@ -32,14 +64,19 @@ export default function CartBox({ product }) {
         <p>{product.price} <span>AMD</span></p>
       </div>
       <div className='basket_count_box'>
-        <button onClick={() => dispatch(decreaseProduct(product))}>-</button>
+        {
+          product.quantity === 1 ?
+          <button onClick={handleDeleteProductCart} style={{background: 'red'}}>-</button>
+          :
+          <button onClick={handleRemoveOnDecrese}>-</button>
+        }
         <div className='basket_product_quantity'>
-          <p>{product.productQuantity}</p>
+          <p>{product.quantity}</p>
         </div>
-        <button style={buyButtonStyle} onClick={() => dispatch(increaseProduct(product))} disabled={product.stock === 0}>+</button>
+        <button style={buyButtonStyle} onClick={handleIncrease}>+</button>
       </div>
       <div className="remove_button">
-        <button onClick={() => dispatch(removeFromCart(product))}>Հեռացնել</button>
+        <button onClick={handleRemoveProduct}>Հեռացնել</button>
       </div>
     </div>
   );

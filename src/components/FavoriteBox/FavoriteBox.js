@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeFromFavortie } from '../../store/FavoriteSlice';
+import { deleteFavoriteProduct, removeFromFavortie } from '../../store/FavoriteSlice';
 import { MdZoomOutMap } from "react-icons/md";
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineCheck } from 'react-icons/ai';
 import './FavoriteBox.css'
-import { addToCart } from '../../store/CartSlice';
+import { addProductCart, addToCart } from '../../store/CartSlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function FavoriteBox({product}) {
@@ -18,6 +18,22 @@ export default function FavoriteBox({product}) {
 
   const viewProduct = (product) => {
     navigate(`/shop/${product.category}/product/${product.id}/${product.title}`)
+  }
+
+  const handleAddToCartFromFavorite = async () => {
+    try {
+      dispatch(addProductCart(product))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteFavoriteProduct = async () => {
+    try {
+      dispatch(deleteFavoriteProduct(product.id))
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const addedToCart = cartProducts.cartProducts.find((item) => item.id === product.id);
@@ -39,8 +55,8 @@ export default function FavoriteBox({product}) {
         <p>{product.price} <span>AMD</span></p>
       </div>
       <div className="favorite_box_buttons">
-        <button className='remove_button' onClick={() => dispatch(removeFromFavortie(product))}><BsTrash/></button>
-        <button className='add_button' onClick={() => dispatch(addToCart(product))} style={addedToCartStyle}>{addedToCart ? <AiOutlineCheck/> : <HiOutlineShoppingCart/>}</button>
+        <button className='remove_button' onClick={handleDeleteFavoriteProduct}><BsTrash/></button>
+        <button className='add_button' onClick={handleAddToCartFromFavorite} style={addedToCartStyle}>{addedToCart ? <AiOutlineCheck/> : <HiOutlineShoppingCart/>}</button>
       </div>
     </div>
   )

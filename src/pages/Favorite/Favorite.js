@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { clearFavorite, getFavoriteProductsQuantity } from '../../store/FavoriteSlice';
+import { clearFavorite, fetchFavoriteProducts, getFavoriteProductsQuantity } from '../../store/FavoriteSlice';
 import { HiOutlineArrowSmLeft } from 'react-icons/hi'
 import FavoriteBox from '../../components/FavoriteBox/FavoriteBox';
 import './Favorite.css'
 import { tabTitle } from '../../PageTabTitle/pageTabTitle';
 
-export default function Favorite() {
+export default function Favorite({favoriteProducts}) {
   tabTitle('Ֆավորիտներ - MobiShop')
-  const products = useSelector((state) => state.favorite);
+  const products = favoriteProducts
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Favorite() {
         <div className='favorite_subtitle'>
           <h2>Ֆավորիտներ</h2>
         </div>
-        {products.favoriteProducts.length === 0 ? (
+        {products.length === 0 ? (
           <div className='favorite_empty_box'>
             <div className='favorite_empty'>
               <div className='left_border'></div>
@@ -36,7 +36,7 @@ export default function Favorite() {
           <div className='display_favorite_products'>
             <div className='favorite_products'>
               {
-                products.favoriteProducts.map((product) => {
+                products.map((product) => {
                   return <FavoriteBox key={product.id} product={product} />;
                 })
               }
@@ -46,8 +46,7 @@ export default function Favorite() {
                 <div className="favorite_return_shop">
                   <Link to='/'><HiOutlineArrowSmLeft size={22}/>Շարունակել գնումները</Link>
                 </div>
-                <button onClick={() => dispatch(clearFavorite(products.favoriteProducts))}>Հեռացնել Ամբողջը</button>
-                {/* <button className='add_to_cart' onClick={() => dispatch(addToCartFromFavorite(products.favoriteProducts))}>Ավելացնել զամբյուղում</button> */}
+                <button onClick={() => dispatch(clearFavorite(products))}>Հեռացնել Ամբողջը</button>
               </div>
             </div>
           </div>

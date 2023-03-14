@@ -60,8 +60,6 @@ export default function Header({ onShowMenu, onCloseMenu, menu, menuRef }) {
     window.scrollTo(0,0)
   }
 
-
-
   return (
     <>
       <header className='header'>

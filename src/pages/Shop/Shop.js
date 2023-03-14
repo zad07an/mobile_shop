@@ -7,18 +7,23 @@ import { fetchProducts } from '../../store/ProductsSlice';
 import Slider from '@mui/material/Slider';
 import { Box, CircularProgress } from '@mui/material';
 import { tabTitle } from '../../PageTabTitle/pageTabTitle';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import './Shop.css'
+import Select from '../../components/Select/Select';
+import SelectComponent from '../../components/Select/Select';
 
 export default function Shop() {
 
   tabTitle('Խանութ - MobiShop')
   const { id } = useParams();
-  // const [currentPage, setCurrentPage] = useState(0);
   const shopProductsRef = useRef();
   const [value, setValue] = useState([0, 1000000]);
+  const [company, setCompany] = useState('all');
   const [brand, setBrand] = useState('all');
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.products);
+
+  console.log(company)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -40,16 +45,6 @@ export default function Shop() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  // const postPerPage = 10;
-  // const pageCount = Math.ceil(products.length / postPerPage)
-  // const pageVisited = currentPage * postPerPage;
-  // const currentPosts = products.slice(pageVisited, pageVisited + postPerPage);
-
-  // const onPageChange = useCallback(({ selected }) => {
-  //   setCurrentPage(selected)
-  //   window.scrollTo(0, 0)
-  // }, [])
 
   return (
     <section className='shop_container'>
@@ -101,16 +96,7 @@ export default function Shop() {
             <div className='introduction_company'>
               <p>Select company</p>
             </div>
-            <select className='select_input' defaultValue={brand} onChange={(e) => setBrand(e.target.value)}>
-              <optgroup>
-                <option value="all" selected>All</option>
-                {
-                  productOptions.map((product, index) => {
-                    return <option key={index} value={product.toLowerCase()}>{product.charAt(0).toUpperCase()}{product.slice(1)}</option>
-                  })
-                }
-              </optgroup>
-            </select>
+            <SelectComponent productOptions={productOptions} company={company} setCompany={setCompany}/>
           </div>
         </div>
 
@@ -125,9 +111,9 @@ export default function Shop() {
                 </Box>
               </div> :
             status === STATUSES.ERROR ?
-              <div className='error_status'>
-                <h2>Ինչ–որ բան այն չէ!</h2>
-              </div> :
+            <div className='error_status'>
+              <h2>Ինչ–որ բան այն չէ!</h2>
+            </div> :
             <div className="products_list">
               {
                 products.filter((product) => id !== 'all' && brand !== 'all' ?
@@ -142,20 +128,6 @@ export default function Shop() {
               }
             </div>
           }
-          {/* <div className="display_pagination">
-            <ReactPaginate
-              previousLabel='< Previous'
-              nextLabel='Next >'
-              pageCount={pageCount}
-              onPageChange={onPageChange}
-              containerClassName='pagination_buttons'
-              previousClassName='prev_button'
-              nextClassName='next_button'
-              activeClassName='active_page_button'
-              pageClassName='page_buttons'
-              initialPage={0}
-            />
-          </div> */}
         </div>
       </div>
     </section>

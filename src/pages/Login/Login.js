@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginSchema } from '../../Schemas/Validation'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './Login.css'
-import { userLogin } from '../../store/UserSlice'
+import { fetchUsers, userLogin } from '../../store/UserSlice'
 import { tabTitle } from '../../PageTabTitle/pageTabTitle'
 
 export default function Login() {
@@ -12,19 +12,15 @@ export default function Login() {
   tabTitle('Մուտք - MobiShop')
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  // const user = useLocation((state) => state.user)
+  const isValid = useRef(false);
+  const {users} = useSelector((state) => state.user)
 
-  const onSubmit = async (values, actions) => {
-    try {
-      await new Promise((resolve, reject) => setTimeout(resolve, 1000));
-      actions.resetForm()
-      navigate('/')
-      dispatch(userLogin())
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch])
 
+  console.log(users);
+  
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -32,7 +28,20 @@ export default function Login() {
       checkbox: false
     },
     validationSchema: loginSchema,
-    onSubmit
+    onSubmit: async (values, {resetForm}) => {
+      try {
+          const userExist = users.find((user) => (user.email !== values.email && user.password !== values.password) && (user.email !== values.email && user.password !== values.password) ? isValid.current = false : isValid.current = true);
+        if (!userExist) {
+          dispatch(userLogin())
+          resetForm()
+          navigate('/')
+        } else {
+          console.log('Invalid password or email');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
   })
 
   return (
@@ -79,7 +88,10 @@ export default function Login() {
           }
         </div>
         <div className="login_form_submit">
-          <button onClick={onSubmit} disabled={formik.isSubmitting}>Մուտք</button>
+          <button type='submit' onClick={formik.handleSubmit} disabled={formik.isSubmitting}>Մուտք</button>
+          {
+            isValid.current ? <span style={{color: 'crimson'}}>Invalid password or email</span> : null
+          }
         </div>
         <div className="login_form_forgot">
           <Link to='/register'>Գրանցվել</Link>

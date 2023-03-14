@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+let URL = "http://localhost:5000/cart_products";
 
 export const STATUSES = {
   IDLE: 'Idle',
@@ -16,8 +17,35 @@ const initialState = {
 }
 
 export const fetchCartProducts = createAsyncThunk('cart/fetchCartProducts', async () => {
-  const res = await axios.get("http://localhost:5000/cart_products")
+  const res = await axios.get(URL)
   return await res.data;
+})
+
+export const addProductCart = createAsyncThunk('cart/addProductCart', async (product) => {
+  const response = await axios.post(URL, {...product, quantity: 1});
+  return await response.data;
+})
+
+export const increseProductQuantity = createAsyncThunk('cart/increseProductQuantity', async (product) => {
+  const response = await axios.put(`${URL}/${product.id}`, {...product, quantity: product.quantity + 1});
+  return await response.data
+})
+
+export const deleteProductCart = createAsyncThunk('cart/deleteProductCart', async (id) => {
+  await axios.delete(`${URL}/${id}`);
+  return id;
+})
+
+export const deleteProductOnDecrese = createAsyncThunk('cart/deleteProductOnDecrese', async (product) => {
+  if (product.quantity > 1) {
+    const response = await axios.put(`${URL}/${product.id}`, {...product, quantity: product.quantity - 1})
+    return await response.data
+  }
+})
+
+export const clearProducts = createAsyncThunk('cart/clearProducts', async () => {
+  const response = await axios.delete(URL);
+  return response.data;
 })
 
 const cartSlice = createSlice({
@@ -27,21 +55,16 @@ const cartSlice = createSlice({
     setCartProducts(state, action) {
       state.data = action.payload
     },
-    async addToCart(state, action) {
+    addToCart(state, action) {
       const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
       if (productIndex >= 0) {
-        await axios.delete(`http://localhost:5000/cart_products/${action.payload.id}`)
         state.cartProducts = state.cartProducts.filter((product) => product.id !== action.payload.id)
       } else {
-        await axios.post('http://localhost:5000/cart_products', { ...action.payload, productQuantity: 1})
         const tempProduct = { ...action.payload, productQuantity: 1}
-        state.cartProducts.unshift(tempProduct);
+        state.cartProducts.push(tempProduct);
       }
     },
-    increaseProduct(state, action) {
-      const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
-      state.cartProducts[productIndex].productQuantity += 1
-    },
+ 
     removeFromCart(state, action) {
       state.cartProducts = state.cartProducts.filter((product) => product.id !== action.payload.id);
     },
@@ -49,7 +72,7 @@ const cartSlice = createSlice({
       const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
       if (state.cartProducts[productIndex].productQuantity > 1) {
         state.cartProducts[productIndex].productQuantity -= 1
-      } else if (state.cartProducts[productIndex].productQuantity === 1) {
+      } else {
         state.cartProducts = state.cartProducts.filter((product) => product.id !== action.payload.id);
       }
     },
@@ -58,14 +81,14 @@ const cartSlice = createSlice({
     },
     getTotalAmount(state, action) {
       let {total, quantity} = state.cartProducts.reduce((amount, product) => {
-        const { price, productQuantity } = product;
-        const productTotal = Number(price) * Number(productQuantity);
+        const { price, quantity } = product;
+        const productTotal = Number(price) * Number(quantity);
         amount.total += productTotal;
-        amount.quantity += productQuantity;
+        amount.quantity += quantity;
         return amount;
       }, { total: 0, quantity: 0 });
       state.cartTotalAmount = total;
-      state.productQuantity = quantity;
+      state.quantity = quantity;
     },
   },
   extraReducers: (builder) => {
@@ -80,8 +103,27 @@ const cartSlice = createSlice({
     .addCase(fetchCartProducts.rejected, (state, action) => {
       state.status = STATUSES.ERROR
     })
+    .addCase(addProductCart.fulfilled, (state, action) => {
+      state.cartProducts.push(action.payload)
+    })
+    .addCase(deleteProductCart.fulfilled, (state, action) => {
+      state.cartProducts = state.cartProducts.filter((product) => product.id !== action.payload);
+    })
+    .addCase(increseProductQuantity.fulfilled, (state, action) => {
+      const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
+      state.cartProducts[productIndex].quantity += 1
+    })
+    .addCase(deleteProductOnDecrese.fulfilled, (state, action) => {
+      const productIndex = state.cartProducts.findIndex((product) => product.id === action.payload.id);
+      if (state.cartProducts[productIndex].quantity > 1) {
+        state.cartProducts[productIndex].quantity -= 1
+      }
+    })
+    .addCase(clearProducts.fulfilled, (state, action) => {
+      state.cartProducts = [];
+    })
   }
 })
 
-export const { addToCart, removeFromCart, clearCart, getTotalAmount, increaseProduct, decreaseProduct,setCartProducts } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, getTotalAmount, increaseProduct, decreaseProduct, setCartProducts } = cartSlice.actions;
 export default cartSlice.reducer;

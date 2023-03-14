@@ -1,26 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearCart, fetchCartProducts, getTotalAmount, setCartProducts } from "../../store/CartSlice";
+import { clearCart, clearProducts, fetchCartProducts, getTotalAmount, setCartProducts } from "../../store/CartSlice";
 import CartBox from "../../components/CartBox/CartBox";
 import {HiOutlineArrowSmLeft} from 'react-icons/hi'
 import "./Cart.css";
 import { tabTitle } from "../../PageTabTitle/pageTabTitle";
-import axios from "axios";
+import { Button } from "@mui/material";
 
-export default function Cart() {
+export default function Cart({cartProducts}) {
   // const {clearAllCartProducts, totalPrice} = useContext(ShopContext);
   tabTitle('Զամբյուղ - MobiShop')
-  const products = useSelector((state) => state.cart);
+  const products = cartProducts
   const user = useSelector((state) => state.user.userLogged);
+  const {cartTotalAmount} = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(fetchCartProducts())
-  }, [dispatch])
-
+  const handleClearAll = () => {
+    dispatch(clearProducts())
+  }
   useEffect(() => {
     dispatch(getTotalAmount())
   }, [products, dispatch]);
@@ -31,7 +30,7 @@ export default function Cart() {
         <div className='basket_subtitle'>
           <h2>Զամբյուղ</h2>
         </div>
-        {products.cartProducts.length === 0 ? (
+        {products.length === 0 ? (
           <div className='basket_empty_box'>
             <div className='basket_empty'>
               <div className='left_border'></div>
@@ -51,22 +50,22 @@ export default function Cart() {
             <div className='display_cart_products'>
               <div className="cart_products">
                 {
-                  products.cartProducts.map((product) => {
+                  products.map((product) => {
                   return <CartBox key={product.id} product={product} />;
                   })
                 }
               </div>
               <div className='basket_total_price'>
                 <div className="basket_total_price_clear">
-                  <button onClick={() => dispatch(clearCart(products.cartProducts))}>Հեռացնել Ամբողջը</button>
-                  <p>Ընդանուր գումարը` {products.cartTotalAmount} AMD</p>
+                  <Button color="error" onClick={handleClearAll}>Հեռացնել Ամբողջը</Button>
+                  <p>Ընդանուր գումարը` {cartTotalAmount} AMD</p>
                 </div>
               </div>
             </div>
           </>
         )}
         {
-          products.cartProducts.length === 0 ? null :
+          products.length === 0 ? null :
             <>
               <form action="" className="basket_form" autoComplete="false" onSubmit={(e) => e.preventDefault()}>
                 <div className="bsket_form_title">

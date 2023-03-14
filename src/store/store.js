@@ -5,7 +5,9 @@ import favoriteReducer from './FavoriteSlice';
 import compareReducer from './CompareSlice';
 import userReducer from './UserSlice';
 import categoryReducer from './CategorySlice'
-import singleProductReducer from './SingleProduct'
+import singleProductReducer from './SingleProduct';
+import sliderReducer from './SliderSlice'
+import shopReducer from './ShopSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,7 +17,9 @@ const store = configureStore({
     compare: compareReducer,
     user: userReducer,
     category: categoryReducer,
-    singleProduct: singleProductReducer
+    singleProduct: singleProductReducer,
+    slider: sliderReducer,
+    // shop: shopReducer
   }
 })
 

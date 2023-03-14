@@ -70,6 +70,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 5px;
 }
 .login_container .login_form .login_form_submit button {
   width: 150px;

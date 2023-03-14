@@ -1,14 +1,18 @@
 import React from 'react'
-import { GiDelicatePerfume, GiBedLamp, GiOpenedFoodCan } from 'react-icons/gi'
-import { AiOutlineMobile } from 'react-icons/ai';
-import { MdComputer } from 'react-icons/md';
+import * as FontAwesom from 'react-icons';
 import './Assortment.css'
 import { useNavigate } from 'react-router-dom';
 import { tabTitle } from '../../PageTabTitle/pageTabTitle';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchProducts } from '../../store/ProductsSlice';
 
 export default function Assortment() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const {data: products, status} = useSelector((state) => state.products)
 
   tabTitle('Տեսականի - MobiShop')
 
@@ -16,33 +20,31 @@ export default function Assortment() {
     navigate(`/shop/${nav}`)
   }
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch])
+
+  const getCategories = (products) => {
+    const categories = products.map((product) => {
+      return product.category
+    })
+    return [...new Set(categories)]
+  }
+
+  const uniqueCategories = getCategories(products);
   return (
     <div className='assortment_container'>
       <div className="assortment_box">
-        <div className='assortment_category_box' onClick={() => goToCategory('smartphones')}>
-          <AiOutlineMobile className="assortment_icon" />
-          <p>Հեռախոսներ</p>
-        </div>
-        <div className='assortment_category_box' onClick={() => goToCategory('laptops')}>
-          <MdComputer className="assortment_icon" />
-          <p>Նոթբուքեր</p>
-        </div>
-        <div className='assortment_category_box' onClick={() => goToCategory('fragrances')}>
-          <GiDelicatePerfume className="assortment_icon" />
-          <p>Օծանելիքներ</p>
-        </div>
-        <div className='assortment_category_box' onClick={() => goToCategory('skincare')}>
-          <GiOpenedFoodCan className="assortment_icon" />
-          <p>Մթերային</p>
-        </div>
-        <div className='assortment_category_box' onClick={() => goToCategory('groceries')}>
-          <GiDelicatePerfume className="assortment_icon" />
-          <p>Մաշկի խնամք</p>
-        </div>
-        <div className='assortment_category_box' onClick={() => goToCategory('home-decoration')}>
-          <GiBedLamp className="assortment_icon" />
-          <p>Տան դեկորացիա</p>
-        </div>
+        {
+          uniqueCategories.map((item, idx) => {
+            return (
+              <div key={idx} className='assortment_category_box' onClick={() => goToCategory(item)}>
+                {/* <AiOutlineMobile className="assortment_icon" />  */}
+                <p>{item}</p>
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   )

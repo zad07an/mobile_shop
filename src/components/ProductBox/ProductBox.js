@@ -5,13 +5,14 @@ import { MdZoomOutMap } from "react-icons/md";
 import { TbArrowsShuffle } from 'react-icons/tb';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
-import { addCartProduct, addToCart } from "../../store/CartSlice";
-import { addToFavorite } from "../../store/FavoriteSlice";
-import { addToCompare } from "../../store/CompareSlice";
+import { addCartProduct, addProductCart, addToCart, deleteProductCart } from "../../store/CartSlice";
+import { addFavoriteProduct, addToFavorite, deleteFavoriteProduct, removeFromFavortie } from "../../store/FavoriteSlice";
+import { addCompareProduct, addToCompare, deleteCompareProduct } from "../../store/CompareSlice";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "./ProductBox.css";
 import axios from "axios";
+import { Button } from "@mui/material";
 
 export default function ProductBox({ product, index }) {
 
@@ -59,7 +60,47 @@ export default function ProductBox({ product, index }) {
 
   const handleAddToCart = async () => {
     try {
-      dispatch(addToCart(product));
+      dispatch(addProductCart(product));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDeleteProduct = async () => {
+    try {
+      dispatch(deleteProductCart(product.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleAddToFavorite = async () => {
+    try {
+      dispatch(addFavoriteProduct(product))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleAddToCompare = async () => {
+    try {
+      dispatch(addCompareProduct(product))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleRemoveFavoriteProduct = async () => {
+    try {
+      dispatch(deleteFavoriteProduct(product.id))
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleRemoveCompareProduct = async () => {
+    try {
+      dispatch(deleteCompareProduct(product.id));
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +122,7 @@ export default function ProductBox({ product, index }) {
         </p>
       </div>
       <div className='product_image' onMouseEnter={onImageEnter} onMouseLeave={onImageLeave}>
-        <img src={product.thumbnail} alt="" />
+        <img src={product.thumbnail} alt={product.title} />
         <div onClick={() => viewProduct(product)}><MdZoomOutMap/></div>
       </div>
       <div className='product_name'>
@@ -94,21 +135,26 @@ export default function ProductBox({ product, index }) {
         <p>{product.price} <span>AMD</span></p>
       </div>
       <div className='product_button'>
-        <button className='product_fav' style={selectedFavoriteStyle} onClick={() => dispatch(addToFavorite(product))} title='Ավելացնել ընտրանում'>
           {
-            addedToFavorite ? <><FaHeart className='fav_icon' color="#E73B3B" /></> :
-            <><FaRegHeart className='fav_icon' /></>
+            addedToFavorite ? 
+          <Button className='product_fav' style={selectedFavoriteStyle} onClick={handleRemoveFavoriteProduct} title='Հեռացնել ընտրանուց'>
+              <FaHeart className='fav_icon' color="#E73B3B" />
+          </Button> : 
+          <Button className='product_fav' style={selectedFavoriteStyle} onClick={handleAddToFavorite} title='Ավելացնել ընտրանում'>
+              <FaRegHeart className='fav_icon' />
+          </Button> 
           }
-        </button>
-        <button className='product_compare' title='Համեմատել' onClick={() => dispatch(addToCompare(product))}>
           {
-            addedToCompare ? <TbArrowsShuffle className='compare_icon' style={{color: '#E73B3B'}} /> : <TbArrowsShuffle className='compare_icon' />
+          addedToCompare ? 
+          <Button className='product_compare' onClick={handleRemoveCompareProduct} title='Հեռացնել համեմատւթյան բաժնից'>
+              <TbArrowsShuffle className='compare_icon' color="#E73B3B" />
+          </Button> :
+          <Button className="product_compare" onClick={handleAddToCompare} title="Ավելացնել համեմատւթյան բաժնում"><TbArrowsShuffle className='compare_icon' /></Button>
           }
-        </button>
-        <button
-          onClick={() => dispatch(handleAddToCart)}>
-          {addedToCart ? <AiOutlineCheck className='check_icon'/> : <HiOutlineShoppingCart className='basket_icon' />}
-        </button>
+          {
+          addedToCart ? <Button onClick={handleDeleteProduct} title="Հեռացնել զամբյուղից"><AiOutlineCheck className='check_icon'/></Button> :
+          <Button onClick={() => dispatch(handleAddToCart)} title="Ավելացնել զամբյուղում"><HiOutlineShoppingCart className='basket_icon' /></Button>
+          }
       </div>
     </motion.div>
   );

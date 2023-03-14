@@ -3,10 +3,14 @@ import EachSlide from "./EachSlide/EachSlide";
 import { SliderData } from './SliderData'
 import {MdArrowBackIos, MdArrowForwardIos} from 'react-icons/md'
 import './Slider.css'
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSliderImages } from "../../store/SliderSlice";
 
 export default function SliderComp() {
   const [index, setIndex] = useState(0);
   const timeoutRef = useRef(null);
+  const dispatch = useDispatch();
+  const {slideData} = useSelector((state) => state.slider)
 
   function resetTimeout() {
     if (timeoutRef.current) {
@@ -14,18 +18,22 @@ export default function SliderComp() {
     }
   }
 
+  useEffect(() => {
+    dispatch(fetchSliderImages())
+  }, [dispatch])
+
   const prevSlide = () => {
-    setIndex((prevIndex) => prevIndex < 1 ? SliderData.length - 1 : prevIndex - 1)
+    setIndex((prevIndex) => prevIndex < 1 ? slideData.length - 1 : prevIndex - 1)
   }
 
   const nextSlide = () => {
-    setIndex((prevIndex) => prevIndex === SliderData.length - 1 ? 0 : prevIndex + 1)
+    setIndex((prevIndex) => prevIndex === slideData.length - 1 ? 0 : prevIndex + 1)
   }
 
   useEffect(() => {
     resetTimeout();
     timeoutRef.current = setTimeout(() => {
-      setIndex((prevIndex) => prevIndex === SliderData.length - 1 ? 0 : prevIndex + 1)
+      setIndex((prevIndex) => prevIndex === slideData.length - 1 ? 0 : prevIndex + 1)
     }, 4000);
 
     return () => {
@@ -36,12 +44,12 @@ export default function SliderComp() {
   return (
     <div className="slideshow">
       <div className="slideshowSlider" style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
-        {SliderData.map((slide, index) => {
+        {slideData.map((slide, index) => {
           return <EachSlide key={index} slide={slide} />
         })}
       </div>
       <div className="slideshowDots">
-        {SliderData.map((_, idx) => (
+        {slideData.map((_, idx) => (
           <div key={idx} className={`slideshowDot${index === idx ? " active" : ""}`} onClick={() => { setIndex(idx)}}></div>
         ))}
       </div>

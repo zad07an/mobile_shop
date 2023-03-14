@@ -45,6 +45,23 @@
   align-items: flex-start;
   flex-direction: column;
 }
+.register_container .register_form .register_fname_lname .fname_input div, .register_container .register_form .register_fname_lname .lname_input div, .register_container .register_form .register_fname_lname .email_input div, .register_container .register_form .register_fname_lname .age_input div, .register_container .register_form .register_email_age .fname_input div, .register_container .register_form .register_email_age .lname_input div, .register_container .register_form .register_email_age .email_input div, .register_container .register_form .register_email_age .age_input div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding-right: 10px;
+  border: 1px solid #ccc;
+}
+.register_container .register_form .register_fname_lname .fname_input div input, .register_container .register_form .register_fname_lname .lname_input div input, .register_container .register_form .register_fname_lname .email_input div input, .register_container .register_form .register_fname_lname .age_input div input, .register_container .register_form .register_email_age .fname_input div input, .register_container .register_form .register_email_age .lname_input div input, .register_container .register_form .register_email_age .email_input div input, .register_container .register_form .register_email_age .age_input div input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: 0;
+  padding: 10px;
+  font-size: 16px;
+}
 .register_container .register_form .password_input {
   width: 90%;
   display: flex;
@@ -87,6 +104,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 5px;
   padding: 20px 0;
 }
 .register_container .register_form .submit_input button {
@@ -100,6 +119,15 @@
   letter-spacing: 1px;
   cursor: pointer;
 }
+.register_container .register_form .have_account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register_container .register_form .have_account a {
+  font-size: 16px;
+  color: #2196f3;
+}
 .register_container .register_form input {
   width: 100%;
   height: 45px;
@@ -108,6 +136,7 @@
   outline: 0;
   padding: 10px;
   font-size: 16px;
+  background: transparent;
 }
 .register_container .register_form .error_message {
   font-size: 12px;

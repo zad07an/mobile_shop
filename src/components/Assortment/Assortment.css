@@ -1,9 +1,8 @@
 .assortment_container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 100px 0 40px 0;
 }
 .assortment_container .assortment_box {

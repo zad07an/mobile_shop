@@ -13,15 +13,15 @@ export default function ProductSpec({product}) {
         <tbody className='table_body'>
           <tr>
             <td>Ապրանքի կոդը</td>
-            <td>{product.article}</td>
+            <td>{product.article ? product.article : '-'}</td>
           </tr>
           <tr>
             <td>Բռենդ</td>
-            <td>{product.brand}</td>
+            <td>{product.brand ? product.brand : '-'}</td>
           </tr>
           <tr>
             <td>Մոդել</td>
-            <td>{product.title}</td>
+            <td>{product.title ? product.title : '-'}</td>
           </tr>
         </tbody>
       </table>
@@ -34,19 +34,19 @@ export default function ProductSpec({product}) {
         <tbody className='table_body'>
           <tr>
             <td>Դիսփլեյի չափսը</td>
-            <td>{product.display_size}"</td>
+            <td>{product.display_size ? product.display_size : '-'}"</td>
           </tr>
           <tr>
             <td>Էկրանի կետայնությունը</td>
-            <td>{product.display_resolution}</td>
+            <td>{product.display_resolution ? product.display_resolution : '-'}</td>
           </tr>
           <tr>
             <td>Դիսփլեյի տեխնոլոգիա</td>
-            <td>{product.display_technology}</td>
+            <td>{product.display_technology ? product.display_technology : '-'}</td>
           </tr>
           <tr>
             <td>Լրացուցիչ հնարավորություններ</td>
-            <td>{product.description}</td>
+            <td>{product.description ? product.description : '-'}</td>
           </tr>
         </tbody>
       </table>
@@ -59,15 +59,15 @@ export default function ProductSpec({product}) {
         <tbody className='table_body'>
           <tr>
             <td>Հիշողություն</td>
-            <td>{product.storage}</td>
+            <td>{product.storage ? product.storage : '-'}</td>
           </tr>
           <tr>
             <td>Պրոցեսոր</td>
-            <td>{product.processor}</td>
+            <td>{product.processor ? product.processor : '-'}</td>
           </tr>
           <tr>
             <td>Պրոցեսորի միջուկների քանակը</td>
-            <td>{product.processor_cores}</td>
+            <td>{product.processor_cores ? product.processor_cores : '-'}</td>
           </tr>
         </tbody>
       </table>
